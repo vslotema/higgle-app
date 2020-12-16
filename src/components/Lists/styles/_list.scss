@@ -1,0 +1,81 @@
+.list-container {
+  .item-container,
+  .header-list,
+  input {
+    position: relative;
+    height: 2.8rem;
+    width: 22rem;
+    margin: 0.3rem 0.6rem;
+    box-shadow: 1px 2px 3px rgba($color: #000000, $alpha: 0.2);
+  }
+
+  button {
+    border: none;
+  }
+}
+
+.header-list {
+  position: relative;
+  background: $list-header-gray;
+  height: 3.2rem !important;
+  font-size: $header3;
+  color: white;
+
+  @include flex(flex-start, center, row);
+
+  span {
+    padding-left: 1.2rem;
+  }
+
+  .list-icon {
+    @include flex(center, flex-end, row);
+    font-size: 1.5rem;
+  }
+
+  #delete-btn-list {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    background: none;
+    border: none;
+    .delete-list-icon {
+      height: 1.6rem;
+      width: 1.6rem;
+      object-fit: cover;
+      color: white;
+    }
+  }
+  #delete-btn-list:hover {
+    .delete-list-icon:hover {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+}
+
+.new-item {
+  border: none;
+  padding: 1rem;
+}
+
+.add-item-form {
+  @include flex(center, center, row);
+  position: relative;
+  input {
+    padding: 0rem 2.6rem 0rem 1rem;
+  }
+  #add-item-btn {
+    position: absolute;
+    right: 3%;
+    background: none;
+    .add-item-icon {
+      color: $check-green;
+      @include flex(center, flex-end, row);
+      width: 2rem;
+      height: 2rem;
+    }
+    .add-item-icon:hover {
+      color: rgb(233, 135, 135);
+    }
+  }
+}

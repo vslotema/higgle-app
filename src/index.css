@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(70deg, #f4e4e3, white, #f6dacf);
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus {
+  outline: none;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+
+:hover {
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+
+::-webkit-input-placeholder {
+  font-family: "Montserrat", sans-serif;
+  color: #adadad;
+}
+
+:-ms-input-placeholder {
+  font-family: "Montserrat", sans-serif;
+  color: #adadad;
+}
+
+::-ms-input-placeholder {
+  font-family: "Montserrat", sans-serif;
+  color: #adadad;
+}
+
+::placeholder {
+  font-family: "Montserrat", sans-serif;
+  color: #adadad;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,43 @@
+@import "../../scss/variables.scss";
+
+.header {
+  min-height: 10vh;
+  box-shadow: 0px 3px 10px rgba($color: #000000, $alpha: 0.2);
+}
+
+nav {
+  min-height: 10vh;
+  width: 90%;
+  margin: auto;
+  @include flex(space-between, center, row);
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
+  flex: 1 1 20rem;
+  @include flex(space-between, center, row);
+  flex-wrap: wrap;
+  .link {
+    font-size: $header3;
+    font-weight: 400;
+    text-decoration: none;
+    color: $gray-text;
+  }
+}
+
+.logo {
+  flex: 2 1 20rem;
+  @include flex(flex-start, center, row);
+  h1 {
+    padding: 0rem 2rem;
+    color: $gray-text;
+    font-weight: 100;
+    font-size: $header1;
+    font-family: "East Sea Dokdo", cursive;
+  }
+}
+
+.selected {
+  font-family: "Montserrat Subrayada", sans-serif;
+}

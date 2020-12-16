@@ -1,0 +1,123 @@
+.item-container {
+  background: white;
+  position: relative;
+  width: 100%;
+  color: $gray-text;
+  @include flex(flex-start, center, row);
+}
+
+.checkbox {
+  min-width: 3rem;
+  height: 100%;
+  position: relative;
+
+  .box,
+  .check {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+  .check {
+    display: none;
+    color: $check-green;
+  }
+
+  .checked {
+    display: block;
+  }
+}
+
+.checked-text {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.item-box {
+  color: $gray-text;
+  background: none;
+  padding: 0rem 1rem;
+  max-width: 17rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: $text;
+}
+
+.item-box:hover {
+  z-index: 2;
+  padding: 0.5rem;
+  background: white;
+  overflow: visible;
+  max-width: 100rem;
+  height: 100%;
+  box-shadow: 1px 2px 3px rgba($color: #000000, $alpha: 0.2);
+}
+
+.buttons {
+  position: absolute;
+  width: 9.1rem;
+  height: 100%;
+  display: flex;
+  right: -32%;
+  //transform: translateX(77%);
+
+  button {
+    height: 100%;
+    color: $gray-text;
+    padding: 0.5rem;
+  }
+
+  button:hover {
+    color: white;
+  }
+  #li-priority-btn:hover {
+    background: $priority-btn-color;
+  }
+  #li-schedule-btn:hover {
+    background: $schedule-btn-color;
+  }
+  #li-delete-btn:hover {
+    background: $trash-btn-color;
+  }
+
+  #slide-left-btn {
+    background: white;
+    border: none;
+    opacity: 0.2;
+  }
+
+  #slide-left-btn:hover {
+    opacity: 1;
+    color: $gray-text;
+  }
+
+  #li-priority-btn,
+  #li-schedule-btn,
+  #li-delete-btn {
+    display: none;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    right: -32%;
+  }
+  to {
+    opacity: 1;
+    right: 0%;
+  }
+}
+
+.slide {
+  display: flex !important;
+  right: 0%;
+  animation: slide-in 0.2s ease-in;
+}
+
+.rotate {
+  transform: rotateY(180deg);
+}

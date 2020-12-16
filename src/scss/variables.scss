@@ -1,0 +1,31 @@
+$header1: 3.9rem;
+$header2: 2.3rem;
+$header3: 1.8rem;
+$header4: 2rem;
+$text: 1.5rem;
+
+$gradient: linear-gradient(left, #f4e4e3, white, #f6dacf);
+$background-color: #fdf6f4;
+$gray-text: #616161;
+
+$high: #b60000;
+$medium: #ff9900;
+$low: #2e3cb7;
+$neutral: #8b8b8b;
+
+$high-background: #f5c3c3;
+$medium-background: #ffe0b2;
+$low-background: #bfc2de;
+
+$list-header-gray: #808283;
+$check-green: #0ead69;
+$trash-btn-color: #f25f5c;
+$schedule-btn-color: #69aeff;
+$priority-btn-color: #a5dbc1;
+
+@mixin flex($justify, $align, $direction) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}

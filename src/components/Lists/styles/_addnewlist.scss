@@ -1,0 +1,121 @@
+.close-btn-icon {
+  color: #aaaaaa;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.close-btn-icon:hover {
+  color: $gray-text;
+}
+
+#close-btn {
+  position: absolute;
+  border: none;
+  background: none;
+}
+
+.add-list-btn {
+  @include flex(center, center, row);
+  font-size: $header3;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  background: #aaaaaa;
+  border: none;
+  padding: 1.5rem;
+  color: white;
+  border-radius: 0rem 0rem 1.5rem 1.5rem;
+
+  .plus-icon {
+    position: absolute;
+    right: 2%;
+    bottom: 25%;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.add-list-btn:hover {
+  background-color: #3f3f3f;
+}
+
+.add-list-container {
+  display: none;
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translateX(50%);
+  padding: 1rem;
+  background: #f5e3e2;
+  width: 25rem;
+  height: 18rem;
+  border-radius: 0.5rem;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 2px 2px 5px rgba($color: #000000, $alpha: 0.2);
+
+  input,
+  .add-btn {
+    width: 80%;
+    margin: 0.5rem 0rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: small;
+    border: none;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+  }
+  input {
+    color: $gray-text;
+  }
+
+  .add-btn {
+    position: relative;
+    background: #aaaaaa;
+    color: white;
+    @include flex(center, center, row);
+
+    .popup-plus-icon {
+      position: absolute;
+      right: 3%;
+      bottom: 20%;
+      color: $gray-text;
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+  }
+
+  #close-btn {
+    top: -11%;
+    right: -8%;
+  }
+
+  .add-btn:hover {
+    background: $gray-text;
+
+    .popup-plus-icon {
+      color: white;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.icons-form-container {
+  position: absolute;
+  top: -45%;
+  right: -40%;
+  display: none;
+  width: 20rem;
+  height: 15rem;
+  border-radius: 0.3rem;
+  background: #808283;
+  box-shadow: 4px 4px 4px rgba($color: #000000, $alpha: 0.2);
+
+  #icon-btn-close {
+    top: -11%;
+    right: -8%;
+    position: absolute;
+    border: none;
+    background: none;
+  }
+  .close-btn-icons {
+    background: none;
+    color: #808283;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .close-btn-icons:hover {
+    color: rgb(241, 181, 181);
+  }
+}
+
+.icons-container {
+  
+  .icon-item {
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid white;
+    @include flex(center, center, row);
+    cursor: pointer;
+  }
+
+  .icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: white;
+  }
+}

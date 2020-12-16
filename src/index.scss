@@ -1,0 +1,34 @@
+@import "./scss/variables.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(70deg, #f4e4e3, white, #f6dacf);
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus {
+  outline: none;
+  transition: all 0.15s ease-in;
+}
+
+:hover {
+  transition: all 0.15s ease-in;
+}
+
+::placeholder {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(173, 173, 173);
+}
+
