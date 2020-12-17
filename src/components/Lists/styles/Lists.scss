@@ -17,9 +17,8 @@
 
 .lists-container {
   position: relative;
-
   flex: 3 0 20rem;
-  min-height: 80vh;
+  height: 80vh;
   min-width: 65%;
   margin: 5rem 0rem;
   background: $background-color;
@@ -28,12 +27,13 @@
   @include flex(space-between, center, column);
 
   .lists-box {
-    overflow: scroll;
+    overflow: auto;
     border: 1px solid black;
     width: 90%;
+    height: 84.5%;
     display: flex;
     position: absolute;
-    top: 10rem;
+    top: 6rem;
   }
 }
 

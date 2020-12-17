@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
-import Lists from "./components/Lists/Lists";
+import ListsPage from "./components/Lists/ListsPage";
 import Schedule from "./components/Schedule/Schedule";
 import Settings from "./components/Settings/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -15,7 +15,7 @@ class App extends Component {
           <Route
             exact
             path="/lists"
-            render={(props) => <Lists {...props} isAuthed={this.props} />}
+            render={(props) => <ListsPage {...props} isAuthed={this.props} />}
           ></Route>
           <Route
             exact

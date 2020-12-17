@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AiOutlineClose, AiFillDelete, AiFillCalendar } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
 
 import { IconContext } from "react-icons";
@@ -9,22 +9,9 @@ import ListItem from "./ListItem";
 class List extends Component {
   state = {
     item: "",
-    items: [],
-    id: 0,
-  };
-
-  addItem = (e) => {
-    e.preventDefault();
-
-    if (this.state.item !== "") {
-      const items = this.state.items.concat(this.state.item);
-      this.setState({ items });
-      this.refreshInput();
-    }
   };
 
   refreshInput = () => {
-    console.log("new item class ", document.getElementsByClassName("new-item"));
     const input = document.getElementsByClassName("new-item");
     for (var i = 0; i < input.length; i++) {
       input[i].value = null;
@@ -37,14 +24,22 @@ class List extends Component {
     this.setState({ item: e.target.value });
   };
 
-  showItems = () => {
-    return this.state.items.map((item) => {
-      return <ListItem onSendItem={item} />;
+  showItems = (items, listName) => {
+    return items.map((item) => {
+      return (
+        <ListItem
+          key={Math.floor(Math.random() * 1000000)}
+          onSendItem={item}
+          onSendListName={listName}
+          onSendPriority={this.props.onSendPriority}
+          onDeleteLi={this.props.onDeleteLi}
+          onChecked={this.props.onChecked}
+        />
+      );
     });
   };
 
   render() {
-    console.log("Items ", this.state.items);
     return (
       <div className="list-container">
         <div className="header-list">
@@ -54,14 +49,14 @@ class List extends Component {
             className="lc-btn "
             id="delete-btn-list"
             type="submit"
-            onClick={(e) => this.props.onDelete(e)}
+            onClick={(e) => this.props.onDelete(e, this.props.listName)}
           >
             <IconContext.Provider value={{ className: "delete-list-icon" }}>
               <AiOutlineClose />
             </IconContext.Provider>
           </button>
         </div>
-        {this.showItems()}
+        {this.showItems(this.props.items, this.props.listName)}
         <form className="add-item-form">
           <input
             className="new-item"
@@ -73,7 +68,9 @@ class List extends Component {
             className="lc-btn"
             id="add-item-btn"
             type="submit"
-            onClick={(e) => this.addItem(e)}
+            onClick={(e) =>
+              this.props.addItem(e, this.props.listName, this.state.item)
+            }
           >
             <IconContext.Provider value={{ className: "add-item-icon" }}>
               <IoMdAddCircle />

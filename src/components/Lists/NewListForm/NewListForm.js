@@ -74,7 +74,10 @@ const NewListForm = (props) => {
             <div>{props.icon ? props.icon : <FaIcons />}</div>
           </IconContext.Provider>
         </button>
-        <Icons onSendIcon={props.onSendIcon} />
+        <Icons
+          key={Date.now() + Math.floor(Math.random() * 100)}
+          onSendIcon={props.onSendIcon}
+        />
 
         <button
           className="add-btn"

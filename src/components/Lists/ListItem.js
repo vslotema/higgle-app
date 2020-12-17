@@ -5,34 +5,6 @@ import PriorityForm from "./PriorityForm";
 import { IconContext } from "react-icons";
 import { handleOpenPriorityForm } from "./PriorityForm";
 
-const handleDeleteLi = (e) => {
-  let item = e.target;
-  while (item.classList[0] !== "item-container") {
-    item = item.parentElement;
-  }
-  item.remove();
-};
-
-const handleChecked = (e) => {
-  console.log("handle check");
-
-  let item = e.target;
-  let check;
-  while (item.classList[0] !== "item-container") {
-    if (item.classList[0] === "checkbox") check = item.children[1];
-    item = item.parentElement;
-  }
-  const text = item.children[1];
-
-  //item.checked = !item.checked;
-  check.classList.toggle("checked");
-  text.classList.toggle("checked-text");
-
-  console.log("item.checked ", check);
-  console.log("text ", text);
-  //item.nextElementSibling.classList.toggle("checked");
-};
-
 const handleSlideInBtns = (e) => {
   let item = e.target;
 
@@ -41,8 +13,6 @@ const handleSlideInBtns = (e) => {
   }
 
   const buttons = item;
-  console.log("children ", buttons.children);
-  console.log("childe 1 ", buttons.children[0].children);
 
   buttons.classList.toggle("slide");
   buttons.children[0].children[0].classList.toggle("rotate");
@@ -55,7 +25,12 @@ const ListItem = (props) => {
   return (
     <>
       <div className="item-container">
-        <div className="checkbox" onClick={(e) => handleChecked(e)}>
+        <div
+          className="checkbox"
+          onClick={() =>
+            props.onChecked(props.onSendListName, props.onSendItem.item)
+          }
+        >
           <IconContext.Provider value={{ className: "box" }}>
             <RiCheckboxBlankLine />
           </IconContext.Provider>
@@ -63,8 +38,13 @@ const ListItem = (props) => {
             <RiCheckLine />
           </IconContext.Provider>
         </div>
-        <div className="item-box">{props.onSendItem}</div>
-        <PriorityForm />
+        <div className="item-box">{props.onSendItem.item}</div>
+        <PriorityForm
+          key={Date.now() + Math.floor(Math.random() * 100)}
+          onSendPriority={props.onSendPriority}
+          onSendItem={props.onSendItem}
+          onSendListName={props.onSendListName}
+        />
         <div className="buttons slides" id="buttons-container">
           <button
             id="slide-left-btn"
@@ -90,7 +70,9 @@ const ListItem = (props) => {
             className="slides"
             type="button"
             id="li-delete-btn"
-            onClick={(e) => handleDeleteLi(e)}
+            onClick={() =>
+              props.onDeleteLi(props.onSendListName, props.onSendItem.item)
+            }
           >
             <AiFillDelete />
           </button>

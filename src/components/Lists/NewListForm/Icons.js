@@ -13,7 +13,11 @@ const showIcons = (props) => {
     <div className="icons-container">
       {icons.map((i) => {
         return (
-          <div className="icon-item" onClick={() => props.onSendIcon(i)}>
+          <div
+            key={Math.floor(Math.random() * 100000)}
+            className="icon-item"
+            onClick={() => props.onSendIcon(i)}
+          >
             <IconContext.Provider value={{ className: "icon" }}>
               {i}
             </IconContext.Provider>

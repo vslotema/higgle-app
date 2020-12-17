@@ -1,10 +1,11 @@
+
 .list-container {
   .item-container,
   .header-list,
   input {
     position: relative;
     height: 2.8rem;
-    width: 22rem;
+    width: 25rem;
     margin: 0.3rem 0.6rem;
     box-shadow: 1px 2px 3px rgba($color: #000000, $alpha: 0.2);
   }
@@ -12,6 +13,11 @@
   button {
     border: none;
   }
+}
+
+.list-container{
+  margin-top:4rem;
+  margin-bottom:4rem; 
 }
 
 .header-list {

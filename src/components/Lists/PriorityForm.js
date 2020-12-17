@@ -23,7 +23,7 @@ const handleClosePriorityForm = (e) => {
   form.style.display = "none";
 };
 
-const selectPriority = (e) => {
+const selectPriority = (e, props) => {
   const item = e.target;
   const priority = getPriorityId(item);
   const itembox = getListItem(item);
@@ -31,19 +31,21 @@ const selectPriority = (e) => {
 
   switch (priority) {
     case "high":
-      itembox.classList.add("high-p");
+      props.onSendPriority("high", props.onSendItem.item, props.onSendListName);
       break;
     case "medium":
-      itembox.classList.add("medium-p");
+      props.onSendPriority("medium", props.onSendItem.item,props.onSendListName);
       break;
-    case "low":
-      itembox.classList.add("low-p");
+    case "low":;
+      props.onSendPriority("low", props.onSendItem.item,props.onSendListName);
       break;
     case "neutral":
+      props.onSendPriority("neutral", props.onSendItem.item,props.onSendListName);
       break;
   }
   handleClosePriorityForm(e);
 };
+
 
 const getPriorityId = (item) => {
   if (item.classList[0] === "icon" || item.classList[0] === "priority")
@@ -64,7 +66,7 @@ const removeOtherPriority = (item) => {
     if (classes[i] !== "item-container") item.classList.remove(classes[i]);
 };
 
-const PriorityForm = () => {
+const PriorityForm = (props) => {
   return (
     <div className="priority-container" id="priority-form">
       <button
@@ -77,19 +79,19 @@ const PriorityForm = () => {
         </IconContext.Provider>
       </button>
 
-      <p id="high" onClick={(e) => selectPriority(e)}>
+      <p id="high" onClick={(e) => selectPriority(e, props)}>
         <span className="priority">High Priority</span>
         <span className="icon">!!!</span>
       </p>
-      <p id="medium" onClick={(e) => selectPriority(e)}>
+      <p id="medium" onClick={(e) => selectPriority(e, props)}>
         <span className="priority">Medium Priority</span>
         <span className="icon">!!</span>
       </p>
-      <p id="low" onClick={(e) => selectPriority(e)}>
+      <p id="low" onClick={(e) => selectPriority(e, props)}>
         <span className="priority">Low Priority</span>
         <span className="icon">!</span>
       </p>
-      <p id="neutral" onClick={(e) => selectPriority(e)}>
+      <p id="neutral" onClick={(e) => selectPriority(e, props)}>
         <span className="priority">Neutral</span>
       </p>
     </div>
