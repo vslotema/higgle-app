@@ -32,8 +32,12 @@
 }
 
 .checked-text {
-  opacity: 0.8;
+  //opacity: 0.8;
   text-decoration: line-through;
+
+  .item-box {
+    opacity: 0.5;
+  }
 }
 
 .item-box {
@@ -49,10 +53,10 @@
 }
 
 .item-box:hover {
-  //z-index: 2;
+  opacity: 1;
   overflow: visible;
   padding: 0.5rem;
-  background: white;
+  background: inherit;
   float: left;
   max-width: 200rem;
   height: 100%;
@@ -71,6 +75,7 @@
     height: 100%;
     color: $gray-text;
     padding: 0.5rem;
+    background: white;
   }
 
   button:hover {

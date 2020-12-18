@@ -3,6 +3,7 @@ import React from "react";
 import { AiOutlinePlus, AiFillCloseCircle } from "react-icons/ai";
 import { FaIcons } from "react-icons/fa";
 import Icons from "./Icons";
+import { icons } from "./Icons";
 
 const handleAdd = (e) => {
   e.preventDefault();
@@ -71,7 +72,7 @@ const NewListForm = (props) => {
         >
           Choose Icon
           <IconContext.Provider value={{ className: "popup-plus-icon" }}>
-            <div>{props.icon ? props.icon : <FaIcons />}</div>
+            <div>{props.icon ? icons[props.icon] : <FaIcons />}</div>
           </IconContext.Provider>
         </button>
         <Icons

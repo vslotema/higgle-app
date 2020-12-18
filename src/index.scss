@@ -7,11 +7,13 @@
 
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 
 body {
   font-family: "Montserrat", sans-serif;
-  background: linear-gradient(70deg, #f4e4e3, white, #f6dacf);
+
+  background: linear-gradient(-60deg, #f4e4e3 30%, white, #f6dacf);
 }
 
 button {
@@ -31,4 +33,3 @@ button {
   font-family: "Montserrat", sans-serif;
   color: rgb(173, 173, 173);
 }
-

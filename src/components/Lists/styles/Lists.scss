@@ -15,25 +15,31 @@
   flex-wrap: wrap;
 }
 
+.lists-container,
+.piechart-container {
+  border-radius: 0.5rem;
+  background: $background-color;
+}
+
 .lists-container {
   position: relative;
+
   flex: 3 0 20rem;
   height: 80vh;
   min-width: 65%;
   margin: 5rem 0rem;
-  background: $background-color;
-  border-radius: 1.5rem;
   box-shadow: 5px 10px 10px rgba($color: #000000, $alpha: 0.2);
   @include flex(space-between, center, column);
 
   .lists-box {
+    //border: 1px solid black; 
     overflow: auto;
-    border: 1px solid black;
+    margin:3rem; 
     width: 90%;
-    height: 84.5%;
+    height: 75.5%;
     display: flex;
     position: absolute;
-    top: 6rem;
+    top: 8rem;
   }
 }
 
@@ -41,7 +47,6 @@
   flex: 1 2 20rem;
   min-height: 40vh;
   margin: 0rem 0rem 0rem 5rem;
-  background: $background-color;
-  border-radius: 1.5rem;
+
   box-shadow: 2px 5px 10px rgba($color: #000000, $alpha: 0.1);
 }

@@ -1,7 +1,7 @@
 .search-form {
   position: relative;
   width: 44%;
-  margin: 2rem 0rem;
+  margin: 4rem 0rem;
   right: 23%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -98,30 +98,39 @@
 }
 
 .checkbox .checked {
-  display: block;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .checked-text {
-  opacity: 0.5;
   text-decoration: line-through;
 }
 
+.checked-text .item-box {
+  opacity: 0.5;
+}
+
 .item-box {
+  white-space: nowrap;
   color: #616161;
   background: none;
   padding: 0rem 1rem;
-  max-width: 17rem;
+  max-width: 20rem;
+  max-height: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1.5rem;
 }
 
 .item-box:hover {
-  z-index: 2;
-  padding: 0.5rem;
-  background: white;
+  opacity: 1;
   overflow: visible;
-  max-width: 100rem;
+  padding: 0.5rem;
+  background: inherit;
+  float: left;
+  max-width: 200rem;
   height: 100%;
   -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
@@ -134,13 +143,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  right: -32%;
+  right: -27%;
 }
 
 .buttons button {
   height: 100%;
   color: #616161;
   padding: 0.5rem;
+  background: white;
 }
 
 .buttons button:hover {
@@ -213,9 +223,10 @@
 }
 
 .close-btn-icon {
-  color: #aaaaaa;
+  color: #888686;
   width: 1.8rem;
   height: 1.8rem;
+  display: block;
 }
 
 .close-btn-icon:hover {
@@ -225,7 +236,8 @@
 #close-btn {
   position: absolute;
   border: none;
-  background: none;
+  background: #fdf6f4;
+  border-radius: 5rem;
 }
 
 .add-list-btn {
@@ -250,9 +262,9 @@
   width: 100%;
   background: #aaaaaa;
   border: none;
-  padding: 1.5rem;
+  padding: 1.2rem;
   color: white;
-  border-radius: 0rem 0rem 1.5rem 1.5rem;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
 }
 
 .add-list-btn .plus-icon {
@@ -390,16 +402,28 @@
   top: -45%;
   right: -40%;
   display: none;
-  width: 20rem;
-  height: 15rem;
+  width: 19.7rem;
+  height: 13.2rem;
   border-radius: 0.3rem;
-  background: #808283;
+  background: white;
   -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
           box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .icons-form-container #icon-btn-close {
-  top: -11%;
+  top: -15%;
   right: -8%;
   position: absolute;
   border: none;
@@ -417,10 +441,9 @@
   color: #f1b5b5;
 }
 
-.icons-container .icon-item {
-  height: 3rem;
-  width: 3rem;
-  border: 1px solid white;
+.icon-item {
+  height: 3.3rem;
+  width: 3.3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -437,9 +460,17 @@
   cursor: pointer;
 }
 
-.icons-container .icon {
-  height: 1.5rem;
-  width: 1.5rem;
+.icon-item .icon {
+  height: 1.8rem;
+  width: 1.8em;
+  color: #808283;
+}
+
+.icon-item:hover {
+  background: #a5dbc1;
+}
+
+.icon-item:hover .icon {
   color: white;
 }
 
@@ -448,7 +479,7 @@
 .list-container input {
   position: relative;
   height: 2.8rem;
-  width: 22rem;
+  width: 25rem;
   margin: 0.3rem 0.6rem;
   -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
@@ -458,12 +489,17 @@
   border: none;
 }
 
+.list-container {
+  margin-top: 0rem;
+  margin-bottom: 4rem;
+}
+
 .header-list {
   position: relative;
-  background: #808283;
+  background: #fbede8;
   height: 3.2rem !important;
   font-size: 1.8rem;
-  color: white;
+  color: rgba(97, 97, 97, 0.8);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -513,7 +549,7 @@
   width: 1.6rem;
   -o-object-fit: cover;
      object-fit: cover;
-  color: white;
+  color: rgba(97, 97, 97, 0.8);
 }
 
 .header-list #delete-btn-list:hover .delete-list-icon:hover {
@@ -577,12 +613,10 @@
 }
 
 .priority-container {
+  z-index: 2;
   position: absolute;
   right: -20%;
-  top: -180%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  bottom: -300%;
   display: none;
   height: 13rem;
   width: 14rem;
@@ -602,7 +636,6 @@
       -ms-flex-align: start;
           align-items: flex-start;
   padding: 0.6rem;
-  z-index: 4;
 }
 
 .show-priority-form {
@@ -717,16 +750,20 @@ p {
       flex-wrap: wrap;
 }
 
+.lists-container,
+.piechart-container {
+  border-radius: 0.5rem;
+  background: #fdf6f4;
+}
+
 .lists-container {
   position: relative;
   -webkit-box-flex: 3;
       -ms-flex: 3 0 20rem;
           flex: 3 0 20rem;
-  min-height: 80vh;
+  height: 80vh;
   min-width: 65%;
   margin: 5rem 0rem;
-  background: #fdf6f4;
-  border-radius: 1.5rem;
   -webkit-box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
@@ -745,14 +782,15 @@ p {
 }
 
 .lists-container .lists-box {
-  overflow: scroll;
-  border: 1px solid black;
+  overflow: auto;
+  margin: 3rem;
   width: 90%;
+  height: 75.5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   position: absolute;
-  top: 10rem;
+  top: 8rem;
 }
 
 .piechart-container {
@@ -761,8 +799,6 @@ p {
           flex: 1 2 20rem;
   min-height: 40vh;
   margin: 0rem 0rem 0rem 5rem;
-  background: #fdf6f4;
-  border-radius: 1.5rem;
   -webkit-box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
           box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
 }

@@ -5,6 +5,7 @@ export const showPriority = (listName, item) => {
   const itemContainer = listContainer
     ? getRightItemContainer(listContainer.children, item.item)
     : null;
+    
   if (itemContainer) {
     switch (priority) {
       case "high":

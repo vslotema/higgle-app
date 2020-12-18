@@ -1,4 +1,3 @@
-
 .list-container {
   .item-container,
   .header-list,
@@ -15,17 +14,17 @@
   }
 }
 
-.list-container{
-  margin-top:4rem;
-  margin-bottom:4rem; 
+.list-container {
+  margin-top: 0rem;
+  margin-bottom: 4rem;
 }
 
 .header-list {
   position: relative;
-  background: $list-header-gray;
+  background: $list-header;
   height: 3.2rem !important;
   font-size: $header3;
-  color: white;
+  color: rgba($color: $gray-text, $alpha: 0.8);
 
   @include flex(flex-start, center, row);
 
@@ -48,7 +47,7 @@
       height: 1.6rem;
       width: 1.6rem;
       object-fit: cover;
-      color: white;
+      color: rgba($color: $gray-text, $alpha: 0.8);
     }
   }
   #delete-btn-list:hover {

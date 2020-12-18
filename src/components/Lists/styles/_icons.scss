@@ -3,14 +3,18 @@
   top: -45%;
   right: -40%;
   display: none;
-  width: 20rem;
-  height: 15rem;
+  width: 19.7rem;
+  height: 13.2rem;
   border-radius: 0.3rem;
-  background: #808283;
+  background: white;
   box-shadow: 4px 4px 4px rgba($color: #000000, $alpha: 0.2);
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
 
   #icon-btn-close {
-    top: -11%;
+    top: -15%;
     right: -8%;
     position: absolute;
     border: none;
@@ -28,19 +32,22 @@
   }
 }
 
-.icons-container {
-  
-  .icon-item {
-    height: 3rem;
-    width: 3rem;
-    border: 1px solid white;
-    @include flex(center, center, row);
-    cursor: pointer;
-  }
+.icon-item {
+  height: 3.3rem;
+  width: 3.3rem;
 
+  // border: 1px solid white;
+  @include flex(center, center, row);
+  cursor: pointer;
   .icon {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.8rem;
+    width: 1.8em;
+    color: #808283;
+  }
+}
+.icon-item:hover {
+  background: $priority-btn-color;
+  .icon {
     color: white;
   }
 }

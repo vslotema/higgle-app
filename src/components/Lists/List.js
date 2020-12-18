@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
-
 import { IconContext } from "react-icons";
+import { icons } from "./Icons";
 
 import ListItem from "./ListItem";
 
@@ -11,11 +11,25 @@ class List extends Component {
     item: "",
   };
 
-  refreshInput = () => {
+  componentDidMount() {
+    this.props.onRef(this);
+    //this.focusOnInputField();
+  }
+
+  focusOnInputField = () => {
+    console.log("listname ", this.props.listName);
     const input = document.getElementsByClassName("new-item");
-    for (var i = 0; i < input.length; i++) {
-      input[i].value = null;
+    console.log("input ", input);
+    for (let i = 0; i < input.length; i++) {
+      if (input[i].name === this.props.listName) input[i].focus();
     }
+  };
+
+  refreshInput = () => {
+    this.focusOnInputField();
+    /*for (var i = 0; i < input.length; i++) {
+      input[i].value = "";
+    }*/
     this.setState({ item: "" });
   };
 
@@ -43,7 +57,7 @@ class List extends Component {
     return (
       <div className="list-container">
         <div className="header-list">
-          <span className="list-icon">{this.props.icon}</span>
+          <span className="list-icon">{icons[this.props.icon]}</span>
           <span className="list-name">{this.props.listName}</span>
           <button
             className="lc-btn "
@@ -59,9 +73,10 @@ class List extends Component {
         {this.showItems(this.props.items, this.props.listName)}
         <form className="add-item-form">
           <input
+            id={this.props.listName}
             className="new-item"
             type="text"
-            placeholder="Add new item.."
+            placeholder="Add new to do.."
             onChange={(e) => this.setItem(e)}
           ></input>
           <button

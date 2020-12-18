@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import "./styles/Lists.scss";
 import SearchBar from "./SearchBar";
 import List from "./List";
-import NewListForm from "./NewListForm/NewListForm";
-import { handleCloseForm } from "./NewListForm/NewListForm";
+import NewListForm from "./NewListForm";
+import { handleCloseForm } from "./NewListForm";
 import { showPriority, showChecked } from "./functions/showPriorityandChecked";
 
 class ListsPage extends Component {
   state = {
     newName: "",
+    focus: "",
     icon: null,
     lists: [],
   };
@@ -19,6 +20,9 @@ class ListsPage extends Component {
   }
 
   componentDidUpdate() {
+    const input = document.getElementById(this.state.focus);
+    console.log("input ", input);
+    if (input) input.focus();
     console.log("Component did update", this.state.lists);
     localStorage.setItem("lists", JSON.stringify(this.state.lists));
     this.state.lists.map((list) => {
@@ -26,6 +30,7 @@ class ListsPage extends Component {
         showPriority(list.name, item);
         showChecked(list.name, item);
       });
+      return list;
     });
   }
 
@@ -38,6 +43,7 @@ class ListsPage extends Component {
         items: [],
       });
       localStorage.setItem("lists", JSON.stringify(lists));
+      this.setState({ icon: null });
       this.setState({ lists });
     }
   }
@@ -66,15 +72,15 @@ class ListsPage extends Component {
 
   handleAddItem = (e, nameList, item) => {
     e.preventDefault();
+
     const lists = this.state.lists;
     const items = lists.filter((l) => l.name === nameList)[0].items;
-    console.log("items ", items);
     if (item !== "" && items.every((i) => i.item !== item)) {
       const itemInfo = { item: item, priority: "neutral", checked: false };
       items.push(itemInfo);
+      this.setState({ focus: nameList });
       this.setState({ lists });
     }
-    this.refs.list.refreshInput();
   };
 
   handleDeleteLi = (nameList, nameItem) => {
@@ -104,20 +110,6 @@ class ListsPage extends Component {
     });
 
     this.setState({ lists });
-    /* let item = e.target;
-    let check;
-    while (item.classList[0] !== "item-container") {
-      if (item.classList[0] === "checkbox") check = item.children[1];
-      item = item.parentElement;
-    }
-    const text = item.children[1];
-
-    //item.checked = !item.checked;
-    check.classList.toggle("checked");
-    text.classList.toggle("checked-text");
-
-    console.log("item.checked ", check);
-    console.log("text ", text);*/
   };
   onAddPriorityToList = (priority, nameItem, nameList) => {
     const lists = this.state.lists;
@@ -137,7 +129,7 @@ class ListsPage extends Component {
     return this.state.lists.map((list) => {
       return (
         <List
-          ref="list"
+          onRef={(ref) => (this.list = ref)}
           key={Math.floor(Math.random() * 1000000)}
           listName={list.name}
           icon={list.icon}
