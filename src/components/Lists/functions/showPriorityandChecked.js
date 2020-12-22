@@ -5,7 +5,7 @@ export const showPriority = (listName, item) => {
   const itemContainer = listContainer
     ? getRightItemContainer(listContainer.children, item.item)
     : null;
-    
+
   if (itemContainer) {
     switch (priority) {
       case "high":
@@ -18,7 +18,7 @@ export const showPriority = (listName, item) => {
         itemContainer.classList.add("low-p");
         break;
 
-      case "neutral":
+      default:
         break;
     }
   }

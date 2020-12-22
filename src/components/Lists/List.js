@@ -16,22 +16,19 @@ class List extends Component {
     //this.focusOnInputField();
   }
 
+  /*
   focusOnInputField = () => {
     console.log("listname ", this.props.listName);
-    const input = document.getElementsByClassName("new-item");
+    const input = document.getElementById("input_" + this.props.listName);
     console.log("input ", input);
-    for (let i = 0; i < input.length; i++) {
-      if (input[i].name === this.props.listName) input[i].focus();
-    }
+    input.value = "";
+    input.focus();
   };
 
   refreshInput = () => {
     this.focusOnInputField();
-    /*for (var i = 0; i < input.length; i++) {
-      input[i].value = "";
-    }*/
     this.setState({ item: "" });
-  };
+  };*/
 
   setItem = (e) => {
     e.preventDefault();
@@ -54,8 +51,16 @@ class List extends Component {
   };
 
   render() {
+    console.log("x ", this.props.x);
     return (
-      <div className="list-container">
+      <div
+        className="list-container"
+        id={this.props.listName}
+        style={{
+          transform: `translateX(${this.props.x}px)`,
+          transition: "transform 0.5s ease",
+        }}
+      >
         <div className="header-list">
           <span className="list-icon">{icons[this.props.icon]}</span>
           <span className="list-name">{this.props.listName}</span>
@@ -73,7 +78,7 @@ class List extends Component {
         {this.showItems(this.props.items, this.props.listName)}
         <form className="add-item-form">
           <input
-            id={this.props.listName}
+            id={"input_" + this.props.listName}
             className="new-item"
             type="text"
             placeholder="Add new to do.."

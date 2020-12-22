@@ -34,18 +34,25 @@ const selectPriority = (e, props) => {
       props.onSendPriority("high", props.onSendItem.item, props.onSendListName);
       break;
     case "medium":
-      props.onSendPriority("medium", props.onSendItem.item,props.onSendListName);
+      props.onSendPriority(
+        "medium",
+        props.onSendItem.item,
+        props.onSendListName
+      );
       break;
-    case "low":;
-      props.onSendPriority("low", props.onSendItem.item,props.onSendListName);
+    case "low":
+      props.onSendPriority("low", props.onSendItem.item, props.onSendListName);
       break;
-    case "neutral":
-      props.onSendPriority("neutral", props.onSendItem.item,props.onSendListName);
+    default:
+      props.onSendPriority(
+        "neutral",
+        props.onSendItem.item,
+        props.onSendListName
+      );
       break;
   }
   handleClosePriorityForm(e);
 };
-
 
 const getPriorityId = (item) => {
   if (item.classList[0] === "icon" || item.classList[0] === "priority")

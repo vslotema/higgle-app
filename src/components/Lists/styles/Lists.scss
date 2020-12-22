@@ -23,18 +23,17 @@
 
 .lists-container {
   position: relative;
-
   flex: 3 0 20rem;
   height: 80vh;
   min-width: 65%;
-  margin: 5rem 0rem;
   box-shadow: 5px 10px 10px rgba($color: #000000, $alpha: 0.2);
   @include flex(space-between, center, column);
+  overflow: hidden;
 
   .lists-box {
-    //border: 1px solid black; 
-    overflow: auto;
-    margin:3rem; 
+    //border: 1px solid black;
+    overflow: hidden;
+    margin: 3rem;
     width: 90%;
     height: 75.5%;
     display: flex;
@@ -49,4 +48,51 @@
   margin: 0rem 0rem 0rem 5rem;
 
   box-shadow: 2px 5px 10px rgba($color: #000000, $alpha: 0.1);
+}
+
+.arrow-btn {
+  color: white;
+  background-color: rgba($color: #d6bebe, $alpha: 0.5);
+  height: 7rem;
+  width: 4rem;
+  text-align: center;
+  display: none;
+  position: relative;
+  top: -5%;
+  cursor: pointer;
+}
+
+#right-btn,
+#left-btn {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  height: 100%;
+  width: 4rem;
+  border: none;
+  background: none;
+  cursor: context-menu;
+}
+
+#right-btn {
+  right: 0%;
+}
+
+#right-btn:hover {
+  .arrow-btn {
+    display: inline;
+  }
+}
+
+#left-btn {
+  left: 0%;
+  .arrow-btn {
+    transform: rotateZ(180deg);
+  }
+}
+
+#left-btn:hover {
+  .arrow-btn {
+    display: inline;
+  }
 }
