@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./styles/Lists.scss";
-import SearchBar from "./SearchBar";
-import List from "./List";
-import NewListForm from "./NewListForm";
-import { handleCloseForm } from "./NewListForm";
-import { showPriority, showChecked } from "./functions/showPriorityandChecked";
+import SearchBar from "./Lists/SearchBar";
+import List from "./Lists/List";
+import NewListForm from "./Lists/NewListForm";
+import { handleCloseForm } from "./Lists/NewListForm";
+import { showPriority, showChecked } from "./Lists/showPriorityandChecked";
 import { IoIosArrowForward } from "react-icons/io";
 import { IconContext } from "react-icons";
+import DonutPieChart from "../PieChart/DonutPieChart";
+import { calculateTotalCheckedPercentage } from "../PieChart/CheckedPercentage";
 
 class ListsPage extends Component {
   state = {
@@ -26,14 +28,12 @@ class ListsPage extends Component {
 
   componentDidUpdate() {
     const input = document.getElementById("input_" + this.state.focus);
-    console.log("input ", input);
 
     if (input) {
       input.value = "";
       input.focus();
     }
 
-    console.log("Component did update", this.state.lists);
     localStorage.setItem("lists", JSON.stringify(this.state.lists));
     this.state.lists.map((list) => {
       list.items.map((item) => {
@@ -45,6 +45,7 @@ class ListsPage extends Component {
     });
   }
 
+  /********************* LIST *********************************************************/
   handleAddNewList() {
     const lists = this.state.lists;
     const name =
@@ -84,6 +85,26 @@ class ListsPage extends Component {
     document.getElementById("icons").style.display = "none";
   };
 
+  /* SCROLL THROUGH LIST */
+  goLeft = (e) => {
+    const move = 262;
+    if (this.state.x < 0) {
+      const x = this.state.x + move;
+      this.setState({ x });
+    }
+  };
+
+  goRight = (e) => {
+    const move = 262;
+    const max = move * (this.state.lists.length - 1);
+    if (this.state.x > -max) {
+      const x = this.state.x - move;
+
+      this.setState({ x });
+    }
+  };
+
+  /****************** LIST ITEMS ***********************************************************/
   handleAddItem = (e, nameList, item) => {
     e.preventDefault();
 
@@ -111,8 +132,6 @@ class ListsPage extends Component {
   };
 
   handleChecked = (nameList, nameItem) => {
-    console.log("handle check");
-    console.log(`nameList: ${nameList} nameItem: ${nameItem}`);
     const lists = this.state.lists;
     lists.map((l) => {
       if (l.name === nameList) {
@@ -126,6 +145,7 @@ class ListsPage extends Component {
 
     this.setState({ lists });
   };
+
   onAddPriorityToList = (priority, nameItem, nameList) => {
     const lists = this.state.lists;
     lists.map((l) => {
@@ -141,23 +161,24 @@ class ListsPage extends Component {
     this.setState({ lists });
   };
 
-  goLeft = (e) => {
-    const move = 262;
-    if (this.state.x < 0) {
-      const x = this.state.x + move;
-      this.setState({ x });
-    }
+  /***********  SEARCHBAR ******************************************************************/
+  handleSearchChange = (e) => {
+    const search = e.target.value;
+    this.setState({ search });
   };
 
-  goRight = (e) => {
-    const move = 262;
-    const max = move * (this.state.lists.length - 1);
-    if (this.state.x > -max) {
-      const x = this.state.x - move;
-
-      this.setState({ x });
-    }
+  handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const find =
+      this.state.search.charAt(0).toUpperCase() + this.state.search.slice(1);
+    const list = this.state.lists.filter((item) => item.name === find);
+    const index = this.state.lists.indexOf(list[0]);
+    const x = -(262 * index);
+    if (index !== -1) this.setState({ x });
+    document.getElementById("searchbar_form").value = "";
   };
+
+  /*******************************************************************************************/
 
   showLists = () => {
     return this.state.lists.map((list) => {
@@ -179,21 +200,6 @@ class ListsPage extends Component {
     });
   };
 
-  handleSearchChange = (e) => {
-    console.log("handle search change ", e.target.value);
-    const search = e.target.value;
-    this.setState({ search });
-  };
-
-  handleSearchSubmit = (e) => {
-    e.preventDefault();
-    const find = this.state.search;
-    const list = this.state.lists.filter((item) => item.name === find);
-    const index = this.state.lists.indexOf(list[0]);
-    const x = -(262 * index);
-    console.log("index ", index);
-    if (index !== -1) this.setState({ x });
-  };
   render() {
     return (
       <section className="lists-section">
@@ -208,18 +214,10 @@ class ListsPage extends Component {
               {this.showLists()}
             </div>
             <IconContext.Provider value={{ className: "arrow-btn" }}>
-              <button
-                id="right-btn"
-                onClick={() => this.goRight()}
-                // onMouseMove={() => this.goRight()}
-              >
+              <button id="right-btn" onClick={() => this.goRight()}>
                 <IoIosArrowForward />
               </button>
-              <button
-                id="left-btn"
-                onClick={() => this.goLeft()}
-                //onMouseMove={(e) => this.goLeft()}
-              >
+              <button id="left-btn" onClick={() => this.goLeft()}>
                 <IoIosArrowForward />
               </button>
             </IconContext.Provider>
@@ -232,7 +230,13 @@ class ListsPage extends Component {
           </div>
         </>
         <>
-          <div className="piechart-container"></div>
+          <div className="piechart-container">
+            <div className="piechart-box">
+              <DonutPieChart
+                checkedPercentage={calculateTotalCheckedPercentage()}
+              />
+            </div>
+          </div>
         </>
       </section>
     );

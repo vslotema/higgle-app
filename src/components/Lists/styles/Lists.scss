@@ -7,7 +7,6 @@
 @import "addpriority";
 
 .lists-section {
-  position: relative;
   min-height: 90vh;
   width: 90%;
   margin: auto;
@@ -16,19 +15,19 @@
 }
 
 .lists-container,
-.piechart-container {
+.piechart-box {
   border-radius: 0.5rem;
-  background: $background-color;
 }
 
 .lists-container {
   position: relative;
-  flex: 3 0 20rem;
+  flex: 5 1 20rem;
   height: 80vh;
-  min-width: 65%;
+  min-width: 70%;
   box-shadow: 5px 10px 10px rgba($color: #000000, $alpha: 0.2);
   @include flex(space-between, center, column);
   overflow: hidden;
+  background: $background-color;
 
   .lists-box {
     //border: 1px solid black;
@@ -40,14 +39,6 @@
     position: absolute;
     top: 8rem;
   }
-}
-
-.piechart-container {
-  flex: 1 2 20rem;
-  min-height: 40vh;
-  margin: 0rem 0rem 0rem 5rem;
-
-  box-shadow: 2px 5px 10px rgba($color: #000000, $alpha: 0.1);
 }
 
 .arrow-btn {
@@ -67,7 +58,7 @@
   position: absolute;
   top: 0%;
   right: 0%;
-  height: 100%;
+  height: inherit;
   width: 4rem;
   border: none;
   background: none;
@@ -94,5 +85,174 @@
 #left-btn:hover {
   .arrow-btn {
     display: inline;
+  }
+}
+
+/* PIECHART */
+.piechart-container {
+  flex: 1 2 10rem;
+  margin: 0rem 0rem 0rem 5rem;
+  height: 90vh;
+  width: 20rem;
+  position: relative;
+}
+
+.piechart-box {
+  position: absolute;
+  top: 15%;
+  left: 0%;
+  width: 30rem;
+  height: 30rem;
+  background-color: $background-color;
+  box-shadow: 2px 5px 10px rgba($color: #000000, $alpha: 0.1);
+  @include flex(center, center, column);
+}
+
+/* RESPONSIVE DESIGN*/
+@media screen and (max-width: 1394px) {
+  .piechart-box {
+    width: 25rem;
+    height: 25rem;
+  }
+}
+
+@media screen and (max-width: 1195px) {
+  .piechart-box {
+    width: 20rem;
+    height: 20rem;
+    svg {
+      width: 18rem;
+      height: 18rem;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .piechart-box {
+    width: 18rem;
+    height: 18rem;
+    left: -5%;
+    svg {
+      width: 16rem;
+      height: 16rem;
+    }
+  }
+}
+
+@media screen and (max-width: 818px) {
+  .lists-section {
+    width: 100vw;
+    min-height: 90vh;
+    margin: 0;
+  }
+  .lists-container {
+    min-height: 90vh;
+    width: 100%;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .add-list-btn {
+    border-radius: 0;
+  }
+  .piechart-container {
+    display: none;
+  }
+}
+@media screen and (max-width: 538px) {
+  .search-form {
+    width: 84%;
+    right: 0%;
+  }
+}
+
+@media screen and (max-width: 375px) and (max-height: 667px) {
+  .footer {
+    display: flex !important;
+  }
+  .header {
+    display: none;
+  }
+
+  .lists-section {
+    min-height: 92vh;
+  }
+  .lists-container,
+  .lists-box {
+    margin: 0% !important;
+    min-width: 100% !important;
+  }
+
+  .lists-container {
+    position: relative !important;
+  }
+  .list-container {
+    min-width: 100vw !important;
+    height: 92vh;
+  }
+
+  .lists-box {
+    top: 20% !important;
+    min-height: 100vh !important;
+  }
+  .header-list,
+  .item-container,
+  .add-item-form {
+    min-width: 100% !important;
+    height: 3.5rem !important;
+    margin: 0.2rem 0rem !important;
+  }
+
+  .header-list .list-icon {
+    font-size: 2.5rem;
+  }
+  .header-list span {
+    font-size: 2.5rem;
+    padding-left: 2rem;
+  }
+
+  .header-list {
+    background: none;
+    height: 8rem !important;
+    left: 0% !important;
+  }
+
+  #right-btn,
+  #left-btn {
+    display: none;
+  }
+
+  .buttons {
+    right: 0%;
+  }
+
+  .slides {
+    right: -18%;
+    display: flex;
+  }
+
+  .search-form {
+    // border: 1px solid black;
+    position: absolute;
+    top: 2%;
+    left: 5%;
+    margin: 0rem;
+    width: 80%;
+  }
+
+  .add-list-btn {
+    bottom: 80%;
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      right: -20% !important;
+    }
+    to {
+      opacity: 1;
+      right: 0%;
+    }
   }
 }

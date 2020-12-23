@@ -9,24 +9,22 @@ import {
   FaHeart,
   FaLaptopCode,
   FaPen,
-  FaSeedling,
   FaShoppingCart,
   FaUmbrellaBeach,
   FaCamera,
   FaPodcast,
   FaPepperHot,
   FaSpa,
+  FaDumbbell,
+  FaHeartbeat,
+  FaSuitcase,
 } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { BsTools } from "react-icons/bs";
-import {
-  GoMarkGithub,
-  GoOrganization,
-  GoLaw,
-  GoStar,
-  GoGraph,
-} from "react-icons/go";
+import { GoMarkGithub, GoOrganization, GoStar, GoGraph } from "react-icons/go";
+
+import { BiDumbbell } from "react-icons/bi";
 
 export const icons = {
   envira: <FaEnvira />,
@@ -38,10 +36,10 @@ export const icons = {
   heart: <FaHeart />,
   laptopCode: <FaLaptopCode />,
   pen: <FaPen />,
-  seeding: <FaSeedling />,
+  health: <FaHeartbeat />,
   shopping: <FaShoppingCart />,
   beach: <FaUmbrellaBeach />,
-  work: <MdWork />,
+  work: <FaSuitcase />,
   tools: <BsTools />,
   camera: <FaCamera />,
   podcast: <FaPodcast />,
@@ -50,7 +48,7 @@ export const icons = {
   scissors: <AiOutlineScissor />,
   github: <GoMarkGithub />,
   organization: <GoOrganization />,
-  law: <GoLaw />,
+  fitness: <FaDumbbell />,
   start: <GoStar />,
   graph: <GoGraph />,
 };

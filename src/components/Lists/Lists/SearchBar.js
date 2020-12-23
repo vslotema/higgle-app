@@ -1,9 +1,10 @@
-import SearchBtn from "../../icons/SearchBtn";
+import SearchBtn from "../../../icons/SearchBtn";
 
 const Searchbar = (props) => {
   return (
     <form className="search-form">
       <input
+        id="searchbar_form"
         type="text"
         className="searchbar"
         placeholder="Find list.."

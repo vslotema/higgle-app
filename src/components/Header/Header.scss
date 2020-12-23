@@ -3,41 +3,90 @@
 .header {
   min-height: 10vh;
   box-shadow: 0px 2px 10px rgba($color: #000000, $alpha: 0.2);
-}
 
-nav {
-  min-height: 10vh;
-  width: 90%;
-  margin: auto;
-  @include flex(space-between, center, row);
-  flex-wrap: wrap;
-}
-
-ul {
-  list-style: none;
-  flex: 1 1 20rem;
-  @include flex(space-between, center, row);
-  flex-wrap: wrap;
-  .link {
-    font-size: $header3;
-    font-weight: 400;
-    text-decoration: none;
-    color: $gray-text;
+  nav {
+    position: relative;
+    min-height: 10vh;
+    width: 90%;
+    margin: auto;
+    @include flex(space-between, center, row);
+    flex-wrap: wrap;
   }
-}
 
-.logo {
-  flex: 2 1 20rem;
-  @include flex(flex-start, center, row);
-  h1 {
-    padding: 0rem 2rem;
-    color: $gray-text;
-    font-weight: 100;
-    font-size: $header1;
-    font-family: "East Sea Dokdo", cursive;
+  ul {
+    list-style: none;
+    flex: 1 1 20rem;
+    @include flex(space-between, center, row);
+    flex-wrap: wrap;
+    .link {
+      font-size: $header3;
+      font-weight: 400;
+      text-decoration: none;
+      color: $gray-text;
+    }
   }
-}
 
-.selected {
-  font-family: "Montserrat Subrayada", sans-serif;
+  .logo {
+    flex: 2 1 20rem;
+    @include flex(flex-start, center, row);
+    h1 {
+      padding: 0rem 2rem;
+      color: $gray-text;
+      font-weight: 100;
+      font-size: $header1;
+      font-family: "East Sea Dokdo", cursive;
+    }
+  }
+
+  .selected {
+    font-family: "Montserrat Subrayada", sans-serif;
+  }
+
+  .burger {
+    color: #616161;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: none;
+  }
+
+  @media screen and (max-width: 568px) {
+    ul {
+      display: none;
+    }
+
+    .burger {
+      display: block;
+    }
+
+    .menu {
+      z-index: 2;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(-60deg, #f4e4e3 30%, white, #f6dacf);
+      right: -5%;
+      top: 0%;
+
+      @include flex(space-around, center, column);
+
+      li {
+        background: #f4e4e3;
+        width: inherit;
+        padding: 5rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .close-menu-btn {
+    z-index: 3;
+    color: #616161;
+    background: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    right: -5%;
+    top: 2%;
+    display: none;
+  }
 }

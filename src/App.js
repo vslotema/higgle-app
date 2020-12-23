@@ -5,6 +5,7 @@ import ListsPage from "./components/Lists/ListsPage";
 import Schedule from "./components/Schedule/Schedule";
 import Settings from "./components/Settings/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
 
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
             render={(props) => <Settings {...props} isAuthed={this.props} />}
           ></Route>
         </Switch>
+        <Footer />
       </Router>
     );
   }

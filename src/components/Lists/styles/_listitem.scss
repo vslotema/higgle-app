@@ -122,7 +122,7 @@
 
 .slide {
   display: flex !important;
-  right: 0%;
+  right: 0% !important;
   animation: slide-in 0.2s ease-in;
 }
 
