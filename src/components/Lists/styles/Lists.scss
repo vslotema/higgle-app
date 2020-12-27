@@ -167,55 +167,20 @@
   }
 }
 
-@media screen and (max-width: 375px) and (max-height: 667px) {
-  .footer {
-    display: flex !important;
-  }
-  .header {
-    display: none;
-  }
-
+@media screen and (max-width: 414px) {
   .lists-section {
     min-height: 92vh;
   }
   .lists-container,
   .lists-box {
-    margin: 0% !important;
-    min-width: 100% !important;
+    margin: 0%;
+    min-width: 100%;
   }
 
-  .lists-container {
-    position: relative !important;
-  }
-  .list-container {
-    min-width: 100vw !important;
-    height: 92vh;
-  }
-
-  .lists-box {
-    top: 20% !important;
-    min-height: 100vh !important;
-  }
-  .header-list,
-  .item-container,
-  .add-item-form {
-    min-width: 100% !important;
-    height: 3.5rem !important;
-    margin: 0.2rem 0rem !important;
-  }
-
-  .header-list .list-icon {
-    font-size: 2.5rem;
-  }
-  .header-list span {
-    font-size: 2.5rem;
-    padding-left: 2rem;
-  }
-
-  .header-list {
-    background: none;
-    height: 8rem !important;
-    left: 0% !important;
+  .lists-container .lists-box {
+    top: 0%;
+    min-height: 100vh;
+    margin: 0rem;
   }
 
   #right-btn,
@@ -223,36 +188,59 @@
     display: none;
   }
 
-  .buttons {
-    right: 0%;
-  }
-
-  .slides {
-    right: -18%;
-    display: flex;
-  }
-
   .search-form {
     // border: 1px solid black;
-    position: absolute;
-    top: 2%;
-    left: 5%;
+    z-index: 2;
+    //position: absolute;
+    position: relative;
+    top: 93%;
+    left: 13%;
     margin: 0rem;
-    width: 80%;
+    width: 70%;
+  }
+
+  .searchbar {
+    padding: 0.8rem 2rem;
+  }
+
+  .search-btn {
+    position: absolute;
+    right: 0.75%;
   }
 
   .add-list-btn {
-    bottom: 80%;
+    bottom: 8%;
+    left: 65%;
+    padding: 0.8rem 2rem 0.8rem 0rem;
+    font-size: 1.2rem;
+    width: 12rem;
+    border-radius: 2rem;
+
+    .plus-icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      bottom: 22%;
+      right: 4%;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .add-list-btn {
+    left: 58%;
   }
 
-  @keyframes slide-in {
-    from {
-      opacity: 0;
-      right: -20% !important;
-    }
-    to {
-      opacity: 1;
-      right: 0%;
-    }
+  .search-form {
+    left: 10%;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .add-list-btn {
+    left: 52%;
+  }
+
+  .search-form {
+    left: 10%;
   }
 }

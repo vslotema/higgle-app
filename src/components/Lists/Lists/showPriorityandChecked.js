@@ -1,11 +1,11 @@
 export const showPriority = (listName, item) => {
   const priority = item.priority;
-  const listContainer = getRightListContainer(listName);
+  //const listContainer = getRightListContainer(listName);
 
-  const itemContainer = listContainer
+  /*const itemContainer = listContainer
     ? getRightItemContainer(listContainer.children, item.item)
-    : null;
-
+    : null;*/
+  const itemContainer = document.getElementById(listName + "_" + item.item);
   if (itemContainer) {
     switch (priority) {
       case "high":
@@ -26,11 +26,13 @@ export const showPriority = (listName, item) => {
 
 export const showChecked = (listName, item) => {
   const checked = item.checked;
-  const listContainer = getRightListContainer(listName);
+  /*const listContainer = getRightListContainer(listName);
 
   const itemContainer = listContainer
     ? getRightItemContainer(listContainer.children, item.item)
-    : null;
+    : null;*/
+
+  const itemContainer = document.getElementById(listName + "_" + item.item);
 
   if (checked) {
     itemContainer.classList.add("checked-text");

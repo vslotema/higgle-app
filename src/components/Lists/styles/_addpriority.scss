@@ -1,7 +1,7 @@
 .priority-container {
   z-index: 2;
   position: absolute;
-  right: -20%;
+  right: 5%;
   bottom: -300%;
   display: none;
   height: 13rem;
@@ -97,4 +97,10 @@ p {
 .low-p {
   background: $low-background;
   color: $low;
+}
+
+@media screen and (max-width: 320px) {
+  .priority-container {
+    bottom: -400%;
+  }
 }

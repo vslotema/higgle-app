@@ -24,7 +24,10 @@ const handleSlideInBtns = (e) => {
 const ListItem = (props) => {
   return (
     <>
-      <div className="item-container">
+      <li
+        className="item-container"
+        id={props.onSendListName + "_" + props.onSendItem.item}
+      >
         <div
           className="checkbox"
           onClick={() =>
@@ -77,7 +80,7 @@ const ListItem = (props) => {
             <AiFillDelete />
           </button>
         </div>
-      </div>
+      </li>
     </>
   );
 };

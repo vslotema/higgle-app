@@ -2,7 +2,9 @@
   background: white;
   position: relative;
   width: 100%;
+  height: 3rem;
   color: $gray-text;
+  margin: 0.2rem 0.6rem;
   @include flex(flex-start, center, row);
 }
 
@@ -33,10 +35,10 @@
 
 .checked-text {
   //opacity: 0.8;
-  text-decoration: line-through;
+  // text-decoration: line-through;
 
   .item-box {
-    opacity: 0.5;
+    opacity: 0.2;
   }
 }
 
@@ -128,4 +130,60 @@
 
 .rotate {
   transform: rotateY(180deg);
+}
+
+@media screen and (max-width: 414px) {
+  .item-container {
+    min-width: 100%;
+    height: 3.5rem;
+    margin: 0.2rem 0rem;
+  }
+
+  .buttons {
+    right: 5%;
+  }
+
+  .slides {
+    right: -17%;
+    display: flex;
+  }
+
+  .header-list #delete-btn-list .delete-list-icon {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .header-list #delete-btn-list .delete-list-icon:hover {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      right: -20% !important;
+    }
+    to {
+      opacity: 1;
+      right: 2%;
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .slides {
+    right: -18.5%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .slides {
+    right: -19.3%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .slides {
+    right: -21.9%;
+  }
 }

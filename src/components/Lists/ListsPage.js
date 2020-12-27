@@ -10,6 +10,9 @@ import { IconContext } from "react-icons";
 import DonutPieChart from "../PieChart/DonutPieChart";
 import { calculateTotalCheckedPercentage } from "../PieChart/CheckedPercentage";
 
+let X = 0;
+let startX = 0;
+
 class ListsPage extends Component {
   state = {
     newName: "",
@@ -19,14 +22,24 @@ class ListsPage extends Component {
     x: 0,
     left: false,
     search: "",
+    checkedPercentage: 0,
   };
+
+  getPercentage() {
+    const p = calculateTotalCheckedPercentage();
+    if (p !== this.state.checkedPercentage)
+      this.setState({ checkedPercentage: p });
+    return p;
+  }
 
   componentDidMount() {
     const lists = JSON.parse(localStorage.getItem("lists"));
     if (lists) this.setState({ lists });
+    this.setState({ checkedPercentage: calculateTotalCheckedPercentage() });
   }
 
   componentDidUpdate() {
+    console.log("moves ", this.state.moveX);
     const input = document.getElementById("input_" + this.state.focus);
 
     if (input) {
@@ -83,25 +96,6 @@ class ListsPage extends Component {
   handleIcon = (icon) => {
     this.setState({ icon });
     document.getElementById("icons").style.display = "none";
-  };
-
-  /* SCROLL THROUGH LIST */
-  goLeft = (e) => {
-    const move = 262;
-    if (this.state.x < 0) {
-      const x = this.state.x + move;
-      this.setState({ x });
-    }
-  };
-
-  goRight = (e) => {
-    const move = 262;
-    const max = move * (this.state.lists.length - 1);
-    if (this.state.x > -max) {
-      const x = this.state.x - move;
-
-      this.setState({ x });
-    }
   };
 
   /****************** LIST ITEMS ***********************************************************/
@@ -173,9 +167,57 @@ class ListsPage extends Component {
       this.state.search.charAt(0).toUpperCase() + this.state.search.slice(1);
     const list = this.state.lists.filter((item) => item.name === find);
     const index = this.state.lists.indexOf(list[0]);
-    const x = -(262 * index);
+    const move = document.getElementsByClassName("list-container")[0]
+      .offsetWidth;
+    const x = -(move * index);
     if (index !== -1) this.setState({ x });
     document.getElementById("searchbar_form").value = "";
+  };
+
+  /***************************  SCROLL THROUGH LIST *******************/
+
+  handleStart = (e) => {
+    startX = e.touches[0].screenX;
+  };
+
+  handleMove = (e) => {
+    X = e.touches[0].screenX;
+  };
+
+  handleMoveEnd = (e) => {
+    if (startX && X) {
+      const difference = startX - X;
+      switch (true) {
+        case difference < -90:
+          this.goLeft();
+          break;
+        case difference > 90:
+          this.goRight();
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  goLeft = () => {
+    const move = document.getElementsByClassName("list-container")[0]
+      .offsetWidth;
+    if (this.state.x < 0) {
+      const x = this.state.x + move;
+      this.setState({ x });
+    }
+  };
+
+  goRight = () => {
+    const move = document.getElementsByClassName("list-container")[0]
+      .offsetWidth;
+    const max = move * (this.state.lists.length - 1);
+    if (this.state.x > -max) {
+      const x = this.state.x - move;
+
+      this.setState({ x });
+    }
   };
 
   /*******************************************************************************************/
@@ -210,7 +252,13 @@ class ListsPage extends Component {
               onSubmit={this.handleSearchSubmit}
             />
 
-            <div className="lists-box" id="container-lists">
+            <div
+              className="lists-box"
+              id="container-lists"
+              onTouchStart={(e) => this.handleStart(e)}
+              onTouchEnd={(e) => this.handleMoveEnd(e)}
+              onTouchMove={(e) => this.handleMove(e)}
+            >
               {this.showLists()}
             </div>
             <IconContext.Provider value={{ className: "arrow-btn" }}>
@@ -232,9 +280,7 @@ class ListsPage extends Component {
         <>
           <div className="piechart-container">
             <div className="piechart-box">
-              <DonutPieChart
-                checkedPercentage={calculateTotalCheckedPercentage()}
-              />
+              <DonutPieChart checkedPercentage={this.getPercentage()} />
             </div>
           </div>
         </>

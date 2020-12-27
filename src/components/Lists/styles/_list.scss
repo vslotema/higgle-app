@@ -1,12 +1,12 @@
 .list-container {
   .item-container,
-  .header-list,
-  input {
+  .header-list {
     position: relative;
-    height: 2.8rem;
     width: 25rem;
-    margin: 0.3rem 0.6rem;
-    box-shadow: 1px 2px 3px rgba($color: #000000, $alpha: 0.2);
+    box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.1);
+    border-radius: 0.2rem;
+
+    // margin: 0rem 0.6rem;
   }
 
   button {
@@ -15,26 +15,40 @@
 }
 
 .list-container {
-  margin-top: 0rem;
-  margin-bottom: 4rem;
+  height: 100%;
+  ul {
+    height: 82%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 
 .header-list {
+  margin: 0rem 0.6rem;
   position: relative;
   background: $list-header;
-  height: 3.2rem !important;
+  height: 8.6rem;
   font-size: $header3;
   color: rgba($color: $gray-text, $alpha: 0.8);
+  @include flex(space-around, center, column);
 
-  @include flex(flex-start, center, row);
+  p {
+    position: absolute;
+    top: 7%;
+    @include flex(center, center, row);
+    width: 100%;
+  }
 
-  span {
-    padding-left: 1.2rem;
+  .list-name h3 {
   }
 
   .list-icon {
-    @include flex(center, flex-end, row);
-    font-size: 1.5rem;
+    @include flex(center, center, row);
+    //display: block;
+    font-size: 2rem;
+    padding-right: 2rem;
+    //height: 4rem;
+   // width: 4rem;
   }
 
   #delete-btn-list {
@@ -64,10 +78,20 @@
 }
 
 .add-item-form {
+  //border: 1px solid black;
   @include flex(center, center, row);
-  position: relative;
+  position: absolute;
+  top: 45%;
+  background: none;
+  height: 5rem;
+  margin: 0rem 0.6rem;
+  //box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.2);
+  width: 25rem;
   input {
-    padding: 0rem 2.6rem 0rem 1rem;
+    padding: 0rem 2rem 0rem 1rem;
+    height: 3rem;
+    width: 96%;
+    border-radius: 0.2rem;
   }
   #add-item-btn {
     position: absolute;
@@ -76,11 +100,61 @@
     .add-item-icon {
       color: $check-green;
       @include flex(center, flex-end, row);
-      width: 2rem;
-      height: 2rem;
+      width: 2.3rem;
+      height: 2.3rem;
+      transition: all 0.5s ease-in-out;
     }
     .add-item-icon:hover {
       color: rgb(233, 135, 135);
     }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .list-container {
+    min-width: 100vw;
+    //height: 92vh;
+  }
+
+  .list-container ul {
+    height: 44.5rem;
+  }
+
+  .list-container .header-list {
+    min-width: 100%;
+    height: 12rem;
+  }
+
+  .header-list .list-name .list-icon {
+    font-size: 2.5rem;
+  }
+  .header-list span {
+    font-size: 2.5rem;
+  }
+
+  .header-list {
+    background: none;
+    height: 8rem;
+    left: 0%;
+    margin: 0;
+
+    h3 {
+      top: 10%;
+    }
+  }
+
+  .add-item-form {
+    min-width: 92%;
+
+    top: 45%;
+    input {
+      width: 100%;
+      height: 3.5rem;
+    }
+  }
+
+  .add-item-form #add-item-btn .add-item-icon {
+    width: 2.8rem;
+    height: 2.8rem;
   }
 }

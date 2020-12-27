@@ -36,7 +36,13 @@
   height: 3.2rem;
 }
 
-#search-btn-circle:hover {
-  fill: rgb(34, 48, 245);
+#search-btn-circle {
+  transition: all 0.2s ease-in-out;
 }
 
+#search-btn-circle:hover {
+  fill: rgb(89, 100, 253);
+}
+
+@media screen and (max-width: 375px) {
+}

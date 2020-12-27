@@ -13,22 +13,10 @@ class List extends Component {
 
   componentDidMount() {
     this.props.onRef(this);
-    //this.focusOnInputField();
+    const logoSpan = document.getElementById(`${this.props.listName}_icon`);
+    console.log("logospan ", logoSpan);
+    if (this.props.icon) logoSpan.classList.add("list-icon");
   }
-
-  /*
-  focusOnInputField = () => {
-    console.log("listname ", this.props.listName);
-    const input = document.getElementById("input_" + this.props.listName);
-    console.log("input ", input);
-    input.value = "";
-    input.focus();
-  };
-
-  refreshInput = () => {
-    this.focusOnInputField();
-    this.setState({ item: "" });
-  };*/
 
   setItem = (e) => {
     e.preventDefault();
@@ -36,18 +24,22 @@ class List extends Component {
   };
 
   showItems = (items, listName) => {
-    return items.map((item) => {
-      return (
-        <ListItem
-          key={Math.floor(Math.random() * 1000000)}
-          onSendItem={item}
-          onSendListName={listName}
-          onSendPriority={this.props.onSendPriority}
-          onDeleteLi={this.props.onDeleteLi}
-          onChecked={this.props.onChecked}
-        />
-      );
-    });
+    return (
+      <ul>
+        {items.map((item) => {
+          return (
+            <ListItem
+              key={Math.floor(Math.random() * 1000000)}
+              onSendItem={item}
+              onSendListName={listName}
+              onSendPriority={this.props.onSendPriority}
+              onDeleteLi={this.props.onDeleteLi}
+              onChecked={this.props.onChecked}
+            />
+          );
+        })}
+      </ul>
+    );
   };
 
   render() {
@@ -62,8 +54,12 @@ class List extends Component {
         }}
       >
         <div className="header-list">
-          <span className="list-icon">{icons[this.props.icon]}</span>
-          <span className="list-name">{this.props.listName}</span>
+          <p className="list-name">
+            <span id={`${this.props.listName}_icon`}>
+              {icons[this.props.icon]}
+            </span>
+            <h3>{this.props.listName}</h3>
+          </p>
           <button
             className="lc-btn "
             id="delete-btn-list"
@@ -74,29 +70,31 @@ class List extends Component {
               <AiOutlineClose />
             </IconContext.Provider>
           </button>
+
+          <form className="add-item-form">
+            <input
+              id={"input_" + this.props.listName}
+              className="new-item"
+              type="text"
+              placeholder="Add new to do.."
+              onChange={(e) => this.setItem(e)}
+            ></input>
+            <button
+              className="lc-btn"
+              id="add-item-btn"
+              type="submit"
+              onClick={(e) =>
+                this.props.addItem(e, this.props.listName, this.state.item)
+              }
+            >
+              <IconContext.Provider value={{ className: "add-item-icon" }}>
+                <IoMdAddCircle />
+              </IconContext.Provider>
+            </button>
+          </form>
         </div>
+
         {this.showItems(this.props.items, this.props.listName)}
-        <form className="add-item-form">
-          <input
-            id={"input_" + this.props.listName}
-            className="new-item"
-            type="text"
-            placeholder="Add new to do.."
-            onChange={(e) => this.setItem(e)}
-          ></input>
-          <button
-            className="lc-btn"
-            id="add-item-btn"
-            type="submit"
-            onClick={(e) =>
-              this.props.addItem(e, this.props.listName, this.state.item)
-            }
-          >
-            <IconContext.Provider value={{ className: "add-item-icon" }}>
-              <IoMdAddCircle />
-            </IconContext.Provider>
-          </button>
-        </form>
       </div>
     );
   }

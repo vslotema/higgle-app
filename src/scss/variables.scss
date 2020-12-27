@@ -17,11 +17,16 @@ $high-background: #f5c3c3;
 $medium-background: #ffe0b2;
 $low-background: #bfc2de;
 
-$list-header: #fbede8;
+$list-header: #f6e8e7;
 $check-green: #0ead69;
 $trash-btn-color: #f25f5c;
 $schedule-btn-color: #69aeff;
 $priority-btn-color: #a5dbc1;
+
+h3 {
+  font-size: $header3;
+  font-weight: 400;
+}
 
 @mixin flex($justify, $align, $direction) {
   display: flex;

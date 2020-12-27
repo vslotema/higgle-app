@@ -21,7 +21,6 @@ function DonutPieChart(props) {
       id="donut"
     >
       <circle
-        classname="total"
         r="90"
         cx="100"
         cy="100"
@@ -35,7 +34,7 @@ function DonutPieChart(props) {
         cx="100"
         cy="100"
         stroke={strokecolor}
-        stroke-width="5%"
+        strokeWidth="4%"
         transform="rotate(-90) translate(-200)"
         strokeDasharray={`${c1}, ${c2}`}
         fill="none"

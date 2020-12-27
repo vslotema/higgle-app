@@ -10,5 +10,6 @@ export function calculateTotalCheckedPercentage() {
     totalItems += list.items.length;
     return list;
   });
-  return Math.floor((itemsChecked / totalItems) * 100);
+  if (totalItems > 0) return Math.floor((itemsChecked / totalItems) * 100);
+  return 0;
 }
