@@ -1,0 +1,60 @@
+.week-container {
+  width: 100%;
+  height: 80%;
+  border: 1px solid black;
+  position: absolute;
+  top: 13%;
+  @include flex(space-between, center, row);
+}
+
+.day {
+  height: 90%;
+  width: 13%;
+  // border: 1px solid lightblue;
+  position: relative;
+  background: $background-color;
+  border-radius: 0.7rem;
+  box-shadow: 1px 2px 4px rgba(black, 0.2);
+  // @include flex(space-between, center, column);
+}
+
+.selected {
+  height: 100%;
+  width: 19%;
+
+  .day-header {
+    min-height: 7rem;
+    background: #ffddd2;
+    :nth-child(1) {
+      font-size: 2rem;
+    }
+    :nth-child(2) {
+      font-size: 1.3rem;
+    }
+  }
+
+  .day-footer {
+    height: 5rem;
+
+    form {
+      input {
+        border-radius: 3rem;
+        padding: 0.7rem 3rem 0.7rem 2rem;
+      }
+
+      input::placeholder {
+        font-size: 1.3rem;
+      }
+
+      .add-i-btn {
+        left: 84%;
+        top: -1%;
+
+        .add-item-icon {
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+    }
+  }
+}

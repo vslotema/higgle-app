@@ -2,7 +2,7 @@
   z-index: 2;
   position: absolute;
   right: 5%;
-  bottom: -300%;
+  bottom: -290%;
   display: none;
   height: 13rem;
   width: 14rem;
@@ -14,6 +14,15 @@
   justify-content: space-evenly;
   align-items: flex-start;
   padding: 0.6rem;
+
+  p {
+    width: 100%;
+    padding: 0.5rem;
+    @include flex(space-between, center, row);
+    text-align: start;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+  }
 }
 
 .show-priority-form {
@@ -27,14 +36,6 @@
   right: -10%;
 }
 
-p {
-  width: 100%;
-  padding: 0.5rem;
-  @include flex(space-between, center, row);
-  text-align: start;
-  border-radius: 0.3rem;
-  font-size: 1.2rem;
-}
 .icon {
   font-weight: bold;
   /*padding: 0.4rem;*/
