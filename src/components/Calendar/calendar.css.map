@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,mBAAmB,CAAA;EACf,OAAO,EAAC,IAAI;CACf;;AAED,AAAA,UAAU,CAAC;EACT,UAAU,EAAE,gBAAgB;EAC5B,UAAU,EAAE,GAAG,CAAC,GAAG,CAAC,GAAG,CAAc,kBAAO;EAC5C,aAAa,EAAC,MAAM;CACrB",
+    "sources": [
+        "calendar.scss"
+    ],
+    "names": [],
+    "file": "calendar.css"
+}

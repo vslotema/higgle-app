@@ -4,7 +4,7 @@
   width: 100%;
   height: 3rem;
   color: $gray-text;
-  margin: 0.2rem 0.6rem;
+  margin: 0.2rem 0rem;
   @include flex(flex-start, center, row);
 }
 
@@ -31,17 +31,16 @@
     z-index: 2;
     display: flex;
   }
-}
 
-.checked-text {
-  //opacity: 0.8;
-  // text-decoration: line-through;
+  .checked-text {
+    opacity: 0.1 !important;
+    // text-decoration: line-through;
 
-  .item-box {
-    opacity: 0.2;
+    .item-box {
+      opacity: 0.2 !important;
+    }
   }
 }
-
 .item-box {
   white-space: nowrap;
   color: $gray-text;
@@ -111,7 +110,7 @@
   }
 }
 
-@keyframes slide-in {
+@keyframes slideIn {
   from {
     opacity: 0;
     right: -32%;
@@ -125,7 +124,7 @@
 .slide {
   display: flex !important;
   right: 0% !important;
-  animation: slide-in 0.2s ease-in;
+  transform: slideIn 0.2s ease;
 }
 
 .rotate {
@@ -140,10 +139,10 @@
   }
 
   .buttons {
-    right: 5%;
+    right: -16%;
   }
 
-  .slides {
+  .slide {
     right: -17%;
     display: flex;
   }
@@ -158,7 +157,7 @@
     width: 2.5rem;
   }
 
-  @keyframes slide-in {
+  @keyframes slideIn {
     from {
       opacity: 0;
       right: -20% !important;
@@ -171,19 +170,19 @@
 }
 
 @media screen and (max-width: 375px) {
-  .slides {
+  .slide {
     right: -18.5%;
   }
 }
 
 @media screen and (max-width: 360px) {
-  .slides {
+  .slide {
     right: -19.3%;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .slides {
+  .slide {
     right: -21.9%;
   }
 }

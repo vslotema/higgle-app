@@ -5,8 +5,6 @@
     width: 25rem;
     box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.1);
     border-radius: 0.2rem;
-
-    // margin: 0rem 0.6rem;
   }
 
   button {
@@ -15,16 +13,14 @@
 }
 
 .list-container {
-  height: 100%;
-  ul {
-    height: 82%;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  height: 98%;
+  //overflow-y: auto;
+  // overflow-x: hidden;
+  margin: 0rem 1rem;
 }
 
 .header-list {
-  margin: 0rem 0.6rem;
+  margin: 0.2rem 0rem;
   position: relative;
   background: $list-header;
   height: 8.6rem;
@@ -34,12 +30,9 @@
 
   p {
     position: absolute;
-    top: 7%;
+    top: 15%;
     @include flex(center, center, row);
     width: 100%;
-  }
-
-  .list-name h3 {
   }
 
   .list-icon {
@@ -48,7 +41,7 @@
     font-size: 2rem;
     padding-right: 2rem;
     //height: 4rem;
-   // width: 4rem;
+    // width: 4rem;
   }
 
   #delete-btn-list {
@@ -114,6 +107,7 @@
   .list-container {
     min-width: 100vw;
     //height: 92vh;
+    margin: 0rem;
   }
 
   .list-container ul {

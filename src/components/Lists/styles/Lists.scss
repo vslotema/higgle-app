@@ -30,7 +30,7 @@
   background: $background-color;
 
   .lists-box {
-    //border: 1px solid black;
+    
     overflow: hidden;
     margin: 3rem;
     width: 90%;
@@ -49,42 +49,37 @@
   text-align: center;
   display: none;
   position: relative;
-  top: -5%;
+
   cursor: pointer;
 }
 
-#right-btn,
-#left-btn {
-  position: absolute;
-  top: 0%;
-  right: 0%;
-  height: inherit;
-  width: 4rem;
-  border: none;
-  background: none;
-  cursor: context-menu;
-}
-
-#right-btn {
-  right: 0%;
-}
-
-#right-btn:hover {
-  .arrow-btn {
-    display: inline;
+.lists-container {
+  #right-btn,
+  #left-btn {
+    position: absolute;
+    top: -5%;
+    height: inherit;
+    width: 4rem;
+    border: none;
+    background: none;
+    cursor: context-menu;
   }
-}
 
-#left-btn {
-  left: 0%;
-  .arrow-btn {
-    transform: rotateZ(180deg);
+  #right-btn {
+    right: 0%;
+    //top: -5%;
   }
-}
 
-#left-btn:hover {
-  .arrow-btn {
-    display: inline;
+  #right-btn:hover,
+  #left-btn:hover {
+    .arrow-btn {
+      display: inline;
+    }
+  }
+
+  #left-btn {
+    left: 0%;
+    // top: -5%;
   }
 }
 

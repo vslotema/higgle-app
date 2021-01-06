@@ -26,39 +26,18 @@ export const showPriority = (listName, item) => {
 
 export const showChecked = (listName, item) => {
   const checked = item.checked;
-  /*const listContainer = getRightListContainer(listName);
-
-  const itemContainer = listContainer
-    ? getRightItemContainer(listContainer.children, item.item)
-    : null;*/
 
   const itemContainer = document.getElementById(listName + "_" + item.item);
 
-  if (checked) {
-    itemContainer.classList.add("checked-text");
-    itemContainer.children[0].children[1].classList.add("checked");
-  } else {
-    itemContainer.classList.remove("checked-text");
-    itemContainer.children[0].children[1].classList.remove("checked");
-  }
-};
-
-const getRightListContainer = (listName) => {
-  const listContainers = document.getElementsByClassName("list-container");
-  for (let i = 0; i < listContainers.length; i++) {
-    let intext = listContainers[i].children[0].innerText;
-    if (intext === listName) {
-      return listContainers[i];
+  if (itemContainer) {
+    if (checked) {
+      //  itemContainer.classList.add("checked-text");
+      itemContainer.children[1].style.opacity = "0.35";
+      itemContainer.children[1].children[1].classList.add("checked");
+    } else {
+      //itemContainer.classList.remove("checked-text");
+      itemContainer.children[1].style.opacity = "1.0";
+      itemContainer.children[1].children[1].classList.remove("checked");
     }
   }
-  return null;
-};
-
-const getRightItemContainer = (listContainer, itemName) => {
-  for (let i = 1; i < listContainer.length - 1; i++) {
-    if (listContainer[i].children[1].innerHTML === itemName) {
-      return listContainer[i];
-    }
-  }
-  return null;
 };

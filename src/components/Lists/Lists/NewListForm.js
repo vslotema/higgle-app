@@ -5,13 +5,15 @@ import { FaIcons } from "react-icons/fa";
 import Icons from "./Icons";
 import { icons } from "./Icons";
 
-const handleAdd = (e) => {
+const handleAdd = (e,props) => {
+  console.log("e ", e.target);
   e.preventDefault();
+  onChangeFocus(props); 
   openform();
 };
 
 const openform = () => {
-  document.getElementById("new-list-name").value = null;
+  document.getElementById("input_new-list-name").value = null;
   const formAdd = document.getElementById("form-add");
   formAdd.style.display = "flex";
   formAdd.style.animation = "fade-in 0.3s ease";
@@ -35,12 +37,17 @@ const handleIconForm = () => {
   icons.style.display = "flex";
 };
 
+const onChangeFocus = (props) =>
+{
+  props.onChangeFocus("new_list_name");
+}
+
 const NewListForm = (props) => {
   return (
     <>
       <button
         type="submit"
-        onClick={(e) => handleAdd(e)}
+        onClick={(e) => handleAdd(e,props)}
         className="add-list-btn"
       >
         Add New List
@@ -58,7 +65,7 @@ const NewListForm = (props) => {
         </button>
 
         <input
-          id="new-list-name"
+          id="input_new-list-name"
           type="text"
           placeholder="Name your list.."
           onChange={(e) => props.receiveName(e)}

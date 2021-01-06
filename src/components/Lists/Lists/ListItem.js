@@ -4,6 +4,7 @@ import { MdPriorityHigh } from "react-icons/md";
 import PriorityForm from "./PriorityForm";
 import { IconContext } from "react-icons";
 import { handleOpenPriorityForm } from "./PriorityForm";
+import Calendar from "../../Calendar/Calendar";
 
 const handleSlideInBtns = (e) => {
   let item = e.target;
@@ -21,6 +22,13 @@ const handleSlideInBtns = (e) => {
   buttons.children[3].classList.toggle("slide");
 };
 
+const handleShowCalendar = (props) => {
+  const calendar = document.getElementById(
+    "calendar_" + props.onSendListName + "_" + props.onSendItem.item
+  );
+  calendar.style.display = "block";
+};
+
 const ListItem = (props) => {
   return (
     <>
@@ -28,6 +36,11 @@ const ListItem = (props) => {
         className="item-container"
         id={props.onSendListName + "_" + props.onSendItem.item}
       >
+        <Calendar
+          onSendListName={props.onSendListName}
+          onSendItem={props.onSendItem}
+          onScheduleLi={props.onScheduleLi}
+        />
         <div
           className="checkbox"
           onClick={() =>
@@ -48,10 +61,9 @@ const ListItem = (props) => {
           onSendItem={props.onSendItem}
           onSendListName={props.onSendListName}
         />
-        <div className="buttons slides" id="buttons-container">
+        <div className="buttons" id="buttons-container">
           <button
             id="slide-left-btn"
-            className="slides"
             type="button"
             onClick={(e) => handleSlideInBtns(e)}
           >
@@ -59,18 +71,20 @@ const ListItem = (props) => {
           </button>
 
           <button
-            className="slides"
             type="button"
             id="li-priority-btn"
             onClick={(e) => handleOpenPriorityForm(e)}
           >
             <MdPriorityHigh />
           </button>
-          <button className="slides" type="button" id="li-schedule-btn">
+          <button
+            type="button"
+            id="li-schedule-btn"
+            onClick={() => handleShowCalendar(props)}
+          >
             <AiFillCalendar />
           </button>
           <button
-            className="slides"
             type="button"
             id="li-delete-btn"
             onClick={() =>

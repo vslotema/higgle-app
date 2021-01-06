@@ -1,10 +1,18 @@
+h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
 .header {
+  position: relative;
+  z-index: 5;
   min-height: 10vh;
   -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-nav {
+.header nav {
+  position: relative;
   min-height: 10vh;
   width: 90%;
   margin: auto;
@@ -25,7 +33,7 @@ nav {
       flex-wrap: wrap;
 }
 
-ul {
+.header ul {
   list-style: none;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 20rem;
@@ -47,14 +55,14 @@ ul {
       flex-wrap: wrap;
 }
 
-ul .link {
+.header ul .link {
   font-size: 1.8rem;
   font-weight: 400;
   text-decoration: none;
   color: #616161;
 }
 
-.logo {
+.header .logo {
   -webkit-box-flex: 2;
       -ms-flex: 2 1 20rem;
           flex: 2 1 20rem;
@@ -73,7 +81,7 @@ ul .link {
           flex-direction: row;
 }
 
-.logo h1 {
+.header .logo h1 {
   padding: 0rem 2rem;
   color: #616161;
   font-weight: 100;
@@ -81,7 +89,68 @@ ul .link {
   font-family: "East Sea Dokdo", cursive;
 }
 
-.selected {
+.header .selected {
   font-family: "Montserrat Subrayada", sans-serif;
+}
+
+.header .burger {
+  color: #616161;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: none;
+}
+
+@media screen and (max-width: 568px) {
+  .header ul {
+    display: none;
+  }
+  .header .burger {
+    display: block;
+  }
+  .header .menu {
+    z-index: 2;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-60deg, #f4e4e3 30%, white, #f6dacf);
+    right: -5%;
+    top: 0%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .header .menu li {
+    background: #f4e4e3;
+    width: inherit;
+    padding: 5rem;
+    text-align: center;
+  }
+}
+
+.header .close-menu-btn {
+  z-index: 3;
+  color: #616161;
+  background: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  right: -5%;
+  top: 2%;
+  display: none;
+}
+
+@media screen and (max-width: 414px) {
+  .header {
+    display: none;
+  }
 }
 /*# sourceMappingURL=Header.css.map */

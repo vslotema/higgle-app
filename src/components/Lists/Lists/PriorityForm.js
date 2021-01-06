@@ -8,7 +8,7 @@ export function handleOpenPriorityForm(e) {
     item = item.parentElement;
   }
 
-  const form = item.children[2];
+  const form = item.children[3];
 
   form.style.display = "flex";
 }
@@ -19,7 +19,7 @@ const handleClosePriorityForm = (e) => {
   while (item.classList[0] !== "item-container") {
     item = item.parentElement;
   }
-  const form = item.children[2];
+  const form = item.children[3];
   form.style.display = "none";
 };
 

@@ -3,7 +3,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
 import { IconContext } from "react-icons";
 import { icons } from "./Icons";
-
 import ListItem from "./ListItem";
 
 class List extends Component {
@@ -34,6 +33,7 @@ class List extends Component {
               onSendListName={listName}
               onSendPriority={this.props.onSendPriority}
               onDeleteLi={this.props.onDeleteLi}
+              onScheduleLi={this.props.onScheduleLi}
               onChecked={this.props.onChecked}
             />
           );
@@ -43,7 +43,6 @@ class List extends Component {
   };
 
   render() {
-    console.log("x ", this.props.x);
     return (
       <div
         className="list-container"
@@ -53,12 +52,13 @@ class List extends Component {
           transition: "transform 0.5s ease",
         }}
       >
+    
         <div className="header-list">
           <p className="list-name">
             <span id={`${this.props.listName}_icon`}>
               {icons[this.props.icon]}
             </span>
-            <h3>{this.props.listName}</h3>
+            <span>{this.props.listName}</span>
           </p>
           <button
             className="lc-btn "

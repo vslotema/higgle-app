@@ -58,6 +58,10 @@ class ListsPage extends Component {
     });
   }
 
+  handleChangeFocus = (focus) => {
+    this.setState({ focus });
+  };
+
   /********************* LIST *********************************************************/
   handleAddNewList() {
     const lists = this.state.lists;
@@ -69,6 +73,7 @@ class ListsPage extends Component {
         name: name,
         icon: this.state.icon,
         items: [],
+        schedule: "",
       });
       localStorage.setItem("lists", JSON.stringify(lists));
       this.setState({ icon: null });
@@ -105,7 +110,7 @@ class ListsPage extends Component {
     const lists = this.state.lists;
     const items = lists.filter((l) => l.name === nameList)[0].items;
     if (item !== "" && items.every((i) => i.item !== item)) {
-      const itemInfo = { item: item, priority: "neutral", checked: false };
+      const itemInfo = { item: item, priority: "neutral", checked: false,schedule:"" };
       items.push(itemInfo);
       this.setState({ focus: nameList });
       this.setState({ lists });
@@ -123,6 +128,25 @@ class ListsPage extends Component {
     });
 
     this.setState({ lists });
+  };
+
+  handleScheduleLi = (date, nameList, nameItem) => {
+    console.log("handle schedule list item ", date);
+    if (date) {
+      const lists = this.state.lists;
+      lists.map((l) => {
+        if (l.name === nameList) {
+          l.items.map((i) => {
+            if (i.item === nameItem)
+              i.schedule = date.toLocaleDateString("eu-EU");
+            return i;
+          });
+        }
+        return l;
+      });
+
+      this.setState({ lists });
+    }
   };
 
   handleChecked = (nameList, nameItem) => {
@@ -235,6 +259,7 @@ class ListsPage extends Component {
           onDelete={this.handleDeleteList}
           onSendPriority={this.onAddPriorityToList}
           onDeleteLi={this.handleDeleteLi}
+          onScheduleLi={this.handleScheduleLi}
           onChecked={this.handleChecked}
           x={this.state.x}
         />
@@ -270,6 +295,7 @@ class ListsPage extends Component {
               </button>
             </IconContext.Provider>
             <NewListForm
+              onChangeFocus={this.handleChangeFocus}
               receiveSubmit={this.handleSubmit}
               receiveName={this.handleName}
               onSendIcon={this.handleIcon}

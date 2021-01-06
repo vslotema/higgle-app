@@ -10,8 +10,7 @@ class Day extends Component {
   }
 
   setHeaderColor = () => {
-    const header = document.getElementById(this.props.day + "_header");
-    console.log("header ", header);
+    const header = document.getElementById("header_" + this.props.date);
     switch (this.props.day) {
       case "Monday":
         header.classList.add("mon");
@@ -33,10 +32,12 @@ class Day extends Component {
         break;
       case "Sunday":
         header.classList.add("sun");
+      default:
+        break;
     }
   };
 
-  showItems = (items, listName) => {
+  showItems = (items, id) => {
     return (
       <ul>
         {items.map((item) => {
@@ -44,9 +45,10 @@ class Day extends Component {
             <ListItem
               key={Math.floor(Math.random() * 1000000)}
               onSendItem={item}
-              onSendListName={listName}
+              onSendListName={id}
               onSendPriority={this.props.onSendPriority}
               onDeleteLi={this.props.onDeleteLi}
+              onScheduleLi={this.props.onScheduleLi}
               onChecked={this.props.onChecked}
             />
           );
@@ -58,16 +60,29 @@ class Day extends Component {
   render() {
     return (
       <>
-        <div className="day-header" id={this.props.day + "_header"}>
+        <div className="day-header" id={"header_" + this.props.date}>
           <p className="day-week">{this.props.day}</p>
-          <p>{"28/12/2020"}</p>
+          <p>{this.props.date}</p>
         </div>
-        <ul className="list-items"></ul>
+        <div className="list-items">
+          {this.showItems(this.props.items, this.props.date)}
+        </div>
+
         <div className="day-footer">
           <form>
-            <input type="text" placeholder="Add your to do.."></input>
+            <input
+              id={"input_" + this.props.date}
+              type="text"
+              placeholder="Add your to do.."
+              onChange={(e) => this.props.receiveNewItem(e)}
+            />
 
-            <button className="add-i-btn" id="add-item-btn" type="submit">
+            <button
+              className="add-i-btn"
+              id="add-item-btn"
+              type="submit"
+              onClick={(e) => this.props.onAddItem(e, this.props.date)}
+            >
               <IoMdAddCircle className="add-item-icon" />
             </button>
           </form>
