@@ -19,12 +19,9 @@ import {
   FaHeartbeat,
   FaSuitcase,
 } from "react-icons/fa";
-import { MdWork } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { BsTools } from "react-icons/bs";
 import { GoMarkGithub, GoOrganization, GoStar, GoGraph } from "react-icons/go";
-
-import { BiDumbbell } from "react-icons/bi";
 
 export const icons = {
   envira: <FaEnvira />,

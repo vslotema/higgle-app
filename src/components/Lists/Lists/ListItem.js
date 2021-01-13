@@ -5,6 +5,7 @@ import PriorityForm from "./PriorityForm";
 import { IconContext } from "react-icons";
 import { handleOpenPriorityForm } from "./PriorityForm";
 import Calendar from "../../Calendar/Calendar";
+import { icons } from "./Icons";
 
 const handleSlideInBtns = (e) => {
   let item = e.target;
@@ -16,10 +17,10 @@ const handleSlideInBtns = (e) => {
   const buttons = item;
 
   buttons.classList.toggle("slide");
-  buttons.children[0].children[0].classList.toggle("rotate");
-  buttons.children[1].classList.toggle("slide");
+  buttons.children[1].children[0].classList.toggle("rotate");
   buttons.children[2].classList.toggle("slide");
   buttons.children[3].classList.toggle("slide");
+  buttons.children[4].classList.toggle("slide");
 };
 
 const handleShowCalendar = (props) => {
@@ -30,12 +31,10 @@ const handleShowCalendar = (props) => {
 };
 
 const ListItem = (props) => {
+  const id = props.onSendListName + "_" + props.onSendItem.item;
   return (
     <>
-      <li
-        className="item-container"
-        id={props.onSendListName + "_" + props.onSendItem.item}
-      >
+      <li className="item-container" id={id}>
         <Calendar
           onSendListName={props.onSendListName}
           onSendItem={props.onSendItem}
@@ -47,21 +46,21 @@ const ListItem = (props) => {
             props.onChecked(props.onSendListName, props.onSendItem.item)
           }
         >
-          <IconContext.Provider value={{ className: "box" }}>
-            <RiCheckboxBlankLine />
-          </IconContext.Provider>
-          <IconContext.Provider value={{ className: "check" }}>
-            <RiCheckLine />
-          </IconContext.Provider>
+          <RiCheckboxBlankLine className="box" />
+
+          <RiCheckLine className="check" />
         </div>
-        <div className="item-box">{props.onSendItem.item}</div>
+
+        <div className="item-box">{props.onSendItem.item} </div>
         <PriorityForm
           key={Date.now() + Math.floor(Math.random() * 100)}
           onSendPriority={props.onSendPriority}
           onSendItem={props.onSendItem}
           onSendListName={props.onSendListName}
         />
+
         <div className="buttons" id="buttons-container">
+          <span className="item-icon">{icons[props.onSendItem.icon]}</span>
           <button
             id="slide-left-btn"
             type="button"

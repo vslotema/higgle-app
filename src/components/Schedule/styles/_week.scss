@@ -3,6 +3,7 @@
   height: 80%;
   position: absolute;
   top: 13%;
+  overflow: hidden;
 
   @include flex(space-between, center, row);
 }
@@ -81,13 +82,12 @@
 .left {
   right: 14.5rem;
 }
-#right-btn, #left-btn {
+#right-btn,
+#left-btn {
   height: 2.8rem;
   width: 2.4rem;
 }
 
-
 #left-btn {
   transform: rotateZ(-180deg);
-
 }

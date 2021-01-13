@@ -71,24 +71,28 @@ class Week extends Component {
 
   getRightDateList = (day, agenda) => {
     const date = this.state.week[day];
-    const list = agenda.filter((item) => item.date === date);
+    const list = agenda.filter(
+      (item) => new Date(item.date).toLocaleDateString("en-GB") === date
+    );
     if (list.length > 0) {
       return list[0].items;
     }
     return list;
   };
+
   render() {
-    console.log("this props today ", this.props.today);
     return (
       <>
         <div className="week-container">
           {this.state.week.map((date, i) => (
             <div
+              key={"div" + date}
               className="day"
               id={date}
               onClick={() => this.handleSelectDay(date)}
             >
               <Day
+                key={date}
                 day={this.state.today === date ? "Today" : this.state.days[i]}
                 date={date}
                 onAddItem={this.props.onAddItem}

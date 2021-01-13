@@ -20,9 +20,7 @@ class Schedule extends Component {
   };
 
   componentDidMount() {
-    console.log("willmount ");
     const today = getToday();
-    console.log("today ", today);
     this.setState({ today });
     // const today = getToday();
     const agenda = JSON.parse(localStorage.getItem("agenda"));
@@ -32,20 +30,18 @@ class Schedule extends Component {
   }
 
   componentDidUpdate() {
-    // console.log("moves ", this.state.moveX);
     const input = document.getElementById("input_" + this.state.focus);
-    console.log("input ", input);
 
     if (input) {
       input.value = "";
       input.focus();
     }
-
+    console.log("updated agenda ", this.state.agenda);
     localStorage.setItem("agenda", JSON.stringify(this.state.agenda));
     this.state.agenda.map((date) => {
       date.items.map((item) => {
-        showPriority(date.date, item);
-        showChecked(date.date, item);
+        showPriority(new Date(date.date).toLocaleDateString("en-GB"), item);
+        showChecked(new Date(date.date).toLocaleDateString("en-GB"), item);
         return item;
       });
       return date;
@@ -69,7 +65,7 @@ class Schedule extends Component {
   handleDeleteLi = (date, nameItem) => {
     const agenda = this.state.agenda;
     agenda.map((item) => {
-      if (item.date === date) {
+      if (new Date(item.date).toLocaleDateString("en-GB") === date) {
         const itemsList = item.items.filter((i) => i.item !== nameItem);
         item.items = itemsList;
       }
@@ -82,7 +78,7 @@ class Schedule extends Component {
   handleChecked = (date, nameItem) => {
     const agenda = this.state.agenda;
     agenda.map((item) => {
-      if (item.date === date) {
+      if (new Date(item.date).toLocaleDateString("en-GB") === date) {
         item.items.map((i) => {
           if (i.item === nameItem) i.checked = !i.checked;
           return i;
@@ -97,7 +93,7 @@ class Schedule extends Component {
   onAddPriorityToList = (priority, nameItem, date) => {
     const agenda = this.state.agenda;
     agenda.map((item) => {
-      if (item.date === date) {
+      if (new Date(item.date).toLocaleDateString("en-GB") === date) {
         item.items.map((i) => {
           if (i.item === nameItem) i.priority = priority;
           return i;
@@ -109,48 +105,97 @@ class Schedule extends Component {
     this.setState({ agenda });
   };
 
-  handleScheduleLi = (nameList, nameItem) => {
-    console.log("handle schedule list item ");
+  handleScheduleLi = async (newDate, oldDate, nameItem) => {
+    if (newDate) {
+      const transferItem = this.findRightTransferItem(oldDate, nameItem);
+
+      var datelist = await this.findDateList(newDate);
+
+      if (datelist.length === 0) {
+        const agenda = this.state.agenda.concat({
+          date: newDate,
+          items: [transferItem],
+        });
+        console.log("agenda ", agenda);
+        this.setState({ agenda });
+      } else {
+        datelist[0].items.push(transferItem);
+        const agenda = this.state.agenda.map((dateList) => {
+          if (
+            new Date(dateList.date).toLocaleDateString("en-GB") ===
+            new Date(newDate).toLocaleDateString("en-GB")
+          ) {
+            dateList.items = datelist[0].items;
+          }
+          return dateList;
+        });
+        this.setState({ agenda });
+      }
+
+      this.handleDeleteLi(oldDate, nameItem);
+    }
   };
 
+  findDateList = async (newDate) => {
+    return this.state.agenda.filter(
+      (dateList) =>
+        new Date(dateList.date).toLocaleDateString("en-GB") ===
+        new Date(newDate).toLocaleDateString("en-GB")
+    );
+  };
+
+  findRightTransferItem = (oldDate, nameItem) => {
+    const list = this.state.agenda.filter(
+      (date) => new Date(date.date).toLocaleDateString("en-GB") === oldDate
+    );
+    const item = list[0].items.filter((i) => i.item === nameItem);
+    console.log("item ", item);
+    return item[0];
+  };
 
   handleReceived = (e) => {
     e.preventDefault();
-    console.log("e ", e.target);
     const newItem = e.target.value;
     this.setState({ focus: e.target });
     this.setState({ newItem });
   };
 
-  handleAddItem = (e, date) => {
+  handleAddItem = async (e, date) => {
     e.preventDefault();
+    const newItem = {
+      item: this.state.newItem,
+      priority: "neutral",
+      checked: false,
+      icon: "",
+    };
 
-    var addTo = this.state.agenda.filter((item) => item.date === date);
+    var addToDateList = await this.getCorrectDateList(date);
 
-    if (addTo.length > 0) {
-      addTo[0].items.push({
-        item: this.state.newItem,
-        priority: "neutral",
-        checked: false,
-        icon:"",
-      });
-
-      const agenda = this.state.agenda.map((item) => {
-        if (item.date === date) item.items = addTo[0].items;
-        return item;
-      });
-      this.setState({ agenda });
+    if (addToDateList) {
+      addToDateList.items.push(newItem);
     } else {
-      const newItem = {
-        date: date,
-        items: [
-          { item: this.state.newItem, priority: "neutral", checked: false,icon:""},
-        ],
+      let [day, month, year] = date.split("/");
+      var d1 = new Date();
+      d1.setFullYear(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+      const newDateList = {
+        date: d1,
+        items: [newItem],
       };
-      const agenda = this.state.agenda.concat(newItem);
+      const agenda = this.state.agenda.concat(newDateList);
       this.setState({ agenda });
     }
     this.setState({ focus: date });
+  };
+
+  getCorrectDateList = async (date) => {
+    for (let i = 0; i < this.state.agenda.length; i++) {
+      if (
+        new Date(this.state.agenda[i].date).toLocaleDateString("en-GB") === date
+      )
+        return this.state.agenda[i];
+    }
+    return null;
   };
 
   closeSideLists = () => {
@@ -166,11 +211,11 @@ class Schedule extends Component {
   };
 
   showWeekly = () => {
-    console.log("weekly");
     return (
       <>
         <h3 className="view">{`Week  ${getWeek(new Date())}`}</h3>
         <Week
+          key={getWeek(new Date()) + "_" + this.state.today}
           onAddItem={this.handleAddItem}
           receiveNewItem={this.handleReceived}
           onSendPriority={this.onAddPriorityToList}
@@ -184,7 +229,6 @@ class Schedule extends Component {
   };
 
   showMonthly = () => {
-    console.log("monthly");
     return <h3 className="view">January</h3>;
   };
 
@@ -212,7 +256,7 @@ class Schedule extends Component {
           </button>
           {this.state.view === "week" ? this.showWeekly() : this.showMonthly()}
           <div id="addFromLists" className="sideLists">
-            <ListsPage />
+            <ListsPage key={"lists-page"} />
             <button className="close-sideLists-btn" type="button">
               <AiOutlineClose
                 className="close-btn"

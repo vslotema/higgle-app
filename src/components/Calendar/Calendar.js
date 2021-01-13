@@ -23,11 +23,7 @@ export function getWeek(date) {
 
 export function getToday() {
   var today = new Date();
-  /* const day = today.getDate();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  const date = `${day}/${month}/${year}`;*/
-  return today.toLocaleDateString("eu-EU");
+  return today.toLocaleDateString("en-GB");
 }
 
 export function getWeekDates(addWeek) {
@@ -40,21 +36,14 @@ export function getWeekDates(addWeek) {
     const days = i + add - weekday;
     var d = new Date();
     d.setDate(d.getDate() + days);
-    /* const day = d.getDate();
-    const month = d.getMonth() + 1;
-    const year = d.getFullYear();
-    const date = `${day}/${month}/${year}`;
-    console.log("date ", date);*/
-    week[i] = d.toLocaleDateString("eu-EU");
+    week[i] = d.toLocaleDateString("en-GB");
   }
   return week;
 }
 
 const Calendar = (props) => {
   const [selectedDay, setSelectedDay] = useState(null);
-  useEffect(() => closeCalender(), [selectedDay]);
-
-  const closeCalender = () => {
+  useEffect(() => {
     props.onScheduleLi(
       selectedDay,
       props.onSendListName,
@@ -64,7 +53,7 @@ const Calendar = (props) => {
       "calendar_" + props.onSendListName + "_" + props.onSendItem.item
     );
     calendar.style.display = "none";
-  };
+  }, [selectedDay]);
 
   return (
     <>

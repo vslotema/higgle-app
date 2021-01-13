@@ -1,10 +1,6 @@
 export const showPriority = (listName, item) => {
   const priority = item.priority;
-  //const listContainer = getRightListContainer(listName);
 
-  /*const itemContainer = listContainer
-    ? getRightItemContainer(listContainer.children, item.item)
-    : null;*/
   const itemContainer = document.getElementById(listName + "_" + item.item);
   if (itemContainer) {
     switch (priority) {
@@ -31,11 +27,9 @@ export const showChecked = (listName, item) => {
 
   if (itemContainer) {
     if (checked) {
-      //  itemContainer.classList.add("checked-text");
       itemContainer.children[1].style.opacity = "0.35";
       itemContainer.children[1].children[1].classList.add("checked");
     } else {
-      //itemContainer.classList.remove("checked-text");
       itemContainer.children[1].style.opacity = "1.0";
       itemContainer.children[1].children[1].classList.remove("checked");
     }

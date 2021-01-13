@@ -25,11 +25,11 @@ function DonutPieChart(props) {
         cx="100"
         cy="100"
         stroke="#F8E0D8"
-        stroke-width="3%"
+        strokeWidth="3%"
         fill="none"
       ></circle>
       <circle
-        classname="total"
+        className="total"
         r="90"
         cx="100"
         cy="100"
@@ -44,7 +44,7 @@ function DonutPieChart(props) {
         fill="#616161"
         x="50%"
         y="51%"
-        dominant
+        dominant="true"
         position="absolute"
         baseline="middle"
         textAnchor="middle"

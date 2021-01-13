@@ -39,7 +39,6 @@ class ListsPage extends Component {
   }
 
   componentDidUpdate() {
-    console.log("moves ", this.state.moveX);
     const input = document.getElementById("input_" + this.state.focus);
 
     if (input) {
@@ -110,7 +109,12 @@ class ListsPage extends Component {
     const lists = this.state.lists;
     const items = lists.filter((l) => l.name === nameList)[0].items;
     if (item !== "" && items.every((i) => i.item !== item)) {
-      const itemInfo = { item: item, priority: "neutral", checked: false,schedule:"" };
+      const itemInfo = {
+        item: item,
+        priority: "neutral",
+        checked: false,
+        schedule: "",
+      };
       items.push(itemInfo);
       this.setState({ focus: nameList });
       this.setState({ lists });
@@ -131,22 +135,40 @@ class ListsPage extends Component {
   };
 
   handleScheduleLi = (date, nameList, nameItem) => {
-    console.log("handle schedule list item ", date);
     if (date) {
-      const lists = this.state.lists;
-      lists.map((l) => {
-        if (l.name === nameList) {
-          l.items.map((i) => {
-            if (i.item === nameItem)
-              i.schedule = date.toLocaleDateString("eu-EU");
-            return i;
-          });
-        }
-        return l;
-      });
+      var found = false;
+      const transferItem = this.findRightTransferItem(nameList, nameItem);
+      var agenda = JSON.parse(localStorage.getItem("agenda"));
 
-      this.setState({ lists });
+      if (agenda) {
+        agenda = agenda.map((list) => {
+          if (new Date(list.date).toLocaleDateString("en-GB") === new Date(date).toLocaleDateString("en-GB")) {
+            found = true;
+            list.items.push(transferItem);
+          }
+          return list;
+        });
+
+        if (!found)
+          agenda = agenda.concat({ date: date, items: [transferItem] });
+
+        localStorage.setItem("agenda", JSON.stringify(agenda));
+      }
     }
+  };
+
+  findRightTransferItem = (nameList, nameItem) => {
+    const list = this.state.lists.filter((list) => list.name === nameList);
+    const icon = list[0].icon;
+    const item = list[0].items.filter((i) => i.item === nameItem);
+    const transferItem = {
+      item: item[0].item,
+      priority: item[0].priority,
+      checked: item[0].checked,
+      icon: icon,
+    };
+
+    return transferItem;
   };
 
   handleChecked = (nameList, nameItem) => {
