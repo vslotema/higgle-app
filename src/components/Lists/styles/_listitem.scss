@@ -52,28 +52,36 @@
   }
 }
 .item-box {
-  white-space: nowrap;
+  white-space: normal;
   color: $gray-text;
   background: none;
   padding: 0rem 1rem;
-  max-width: calc(100% - 80px);
+  max-width: calc(100% - 60px);
   max-height: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: $text;
-  @include flex(center, center, row);
+  display: block;
 }
 
 .item-box:hover {
-  z-index: 5;
+  word-break: break-all;
+  // overflow: visible;
+
+  /*  z-index: 5;
   opacity: 1;
-  overflow: visible;
+  
   padding: 0.5rem;
   background: inherit;
   float: left;
-  max-width: 200rem;
-  height: 100%;
-  box-shadow: 1px 2px 3px rgba($color: #000000, $alpha: 0.2);
+  // max-width: 200rem;
+  height: 100%;*/
+  // max-width: 80rem;
+  //overflow: visible;
+  // @include flex(center, center, column);
+
+  //
+  //box-shadow: 1px 2px 3px rgba($color: #000000, $alpha: 0.2);
 }
 
 .buttons {
@@ -105,7 +113,7 @@
   }
 
   #slide-left-btn {
-    background: white;
+    background: none;
     border: none;
     opacity: 0.2;
   }
@@ -135,7 +143,7 @@
 
 .slide {
   display: flex !important;
-  right: 0% !important;
+  right: 1% !important;
   transform: slideIn 0.2s ease;
 }
 

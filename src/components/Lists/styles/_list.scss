@@ -13,11 +13,19 @@
 }
 
 .list-container {
-  height: 98%;
-  //overflow-y: auto;
-  // overflow-x: hidden;
+  //height: 98%;
   margin: 0rem 1rem;
 }
+
+/*
+.listitems-ul {
+  height: 100%;
+  .ul-listitems {
+    height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}*/
 
 .header-list {
   margin: 0.2rem 0rem;

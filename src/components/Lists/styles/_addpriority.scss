@@ -1,8 +1,8 @@
 .priority-container {
   z-index: 200;
   position: absolute;
-  right: 5%;
-  bottom: -290%;
+  right: 10%;
+  bottom: -100%;
   display: none;
   height: 13rem;
   width: 14rem;
@@ -26,8 +26,6 @@
 }
 
 .show-priority-form {
-  right: -20%;
-  top: -180%;
   display: flex;
 }
 

@@ -6,7 +6,6 @@ import Icons from "./Icons";
 import { icons } from "./Icons";
 
 const handleAdd = (e,props) => {
-  console.log("e ", e.target);
   e.preventDefault();
   onChangeFocus(props); 
   openform();
@@ -27,7 +26,6 @@ export function handleCloseForm() {
   close.addEventListener("animationend", () => {
     if (close.style.animationName === "fade-out") close.style.display = "none";
   });
-  //document.getElementById("form-add").style.display = "none";
   document.getElementsByClassName("add-list-btn")[0].style.opacity = "1.0";
   document.getElementsByClassName("search-form")[0].style.opacity = "1.0";
 }

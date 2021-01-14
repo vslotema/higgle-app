@@ -22,11 +22,8 @@ class Schedule extends Component {
   componentDidMount() {
     const today = getToday();
     this.setState({ today });
-    // const today = getToday();
     const agenda = JSON.parse(localStorage.getItem("agenda"));
     if (agenda) this.setState({ agenda });
-    // this.setState({ today });
-    // this.setState({ checkedPercentage: calculateTotalCheckedPercentage() });
   }
 
   componentDidUpdate() {
@@ -36,7 +33,7 @@ class Schedule extends Component {
       input.value = "";
       input.focus();
     }
-    console.log("updated agenda ", this.state.agenda);
+
     localStorage.setItem("agenda", JSON.stringify(this.state.agenda));
     this.state.agenda.map((date) => {
       date.items.map((item) => {
@@ -107,32 +104,33 @@ class Schedule extends Component {
 
   handleScheduleLi = async (newDate, oldDate, nameItem) => {
     if (newDate) {
-      const transferItem = this.findRightTransferItem(oldDate, nameItem);
+      if (new Date(newDate).toLocaleDateString("en-GB") !== oldDate) {
+        const transferItem = this.findRightTransferItem(oldDate, nameItem);
 
-      var datelist = await this.findDateList(newDate);
+        var datelist = await this.findDateList(newDate);
 
-      if (datelist.length === 0) {
-        const agenda = this.state.agenda.concat({
-          date: newDate,
-          items: [transferItem],
-        });
-        console.log("agenda ", agenda);
-        this.setState({ agenda });
-      } else {
-        datelist[0].items.push(transferItem);
-        const agenda = this.state.agenda.map((dateList) => {
-          if (
-            new Date(dateList.date).toLocaleDateString("en-GB") ===
-            new Date(newDate).toLocaleDateString("en-GB")
-          ) {
-            dateList.items = datelist[0].items;
-          }
-          return dateList;
-        });
-        this.setState({ agenda });
+        if (datelist.length === 0) {
+          const agenda = this.state.agenda.concat({
+            date: newDate,
+            items: [transferItem],
+          });
+          this.setState({ agenda });
+        } else {
+          datelist[0].items.push(transferItem);
+          const agenda = this.state.agenda.map((dateList) => {
+            if (
+              new Date(dateList.date).toLocaleDateString("en-GB") ===
+              new Date(newDate).toLocaleDateString("en-GB")
+            ) {
+              dateList.items = datelist[0].items;
+            }
+            return dateList;
+          });
+          this.setState({ agenda });
+        }
+
+        this.handleDeleteLi(oldDate, nameItem);
       }
-
-      this.handleDeleteLi(oldDate, nameItem);
     }
   };
 
@@ -149,7 +147,6 @@ class Schedule extends Component {
       (date) => new Date(date.date).toLocaleDateString("en-GB") === oldDate
     );
     const item = list[0].items.filter((i) => i.item === nameItem);
-    console.log("item ", item);
     return item[0];
   };
 
@@ -172,7 +169,8 @@ class Schedule extends Component {
     var addToDateList = await this.getCorrectDateList(date);
 
     if (addToDateList) {
-      addToDateList.items.push(newItem);
+      if (addToDateList.items.every((item) => item.item !== newItem.item))
+        addToDateList.items.push(newItem);
     } else {
       let [day, month, year] = date.split("/");
       var d1 = new Date();

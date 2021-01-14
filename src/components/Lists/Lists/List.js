@@ -13,7 +13,6 @@ class List extends Component {
   componentDidMount() {
     this.props.onRef(this);
     const logoSpan = document.getElementById(`${this.props.listName}_icon`);
-    console.log("logospan ", logoSpan);
     if (this.props.icon) logoSpan.classList.add("list-icon");
   }
 
@@ -24,24 +23,29 @@ class List extends Component {
 
   showItems = (items, listName) => {
     return (
-      <ul>
-        {items.map((item) => {
-          return (
-            <ListItem
-              key={Math.floor(Math.random() * 1000000)}
-              onSendItem={item}
-              onSendListName={listName}
-              onSendPriority={this.props.onSendPriority}
-              onDeleteLi={this.props.onDeleteLi}
-              onScheduleLi={this.props.onScheduleLi}
-              onChecked={this.props.onChecked}
-            />
-          );
-        })}
-      </ul>
+      <div className="listitems-ul">
+        <ul className="ul-listitems">
+          {items.map((item) => {
+            return (
+              <ListItem
+                key={Math.floor(Math.random() * 1000000)}
+                onSendItem={item}
+                onSendListName={listName}
+                onSendPriority={this.props.onSendPriority}
+                onDeleteLi={this.props.onDeleteLi}
+                onScheduleLi={this.props.onScheduleLi}
+                onChecked={this.props.onChecked}
+              />
+            );
+          })}
+        </ul>
+      </div>
     );
   };
 
+  scrollList = () => {
+    console.log("scroll");
+  };
   render() {
     return (
       <div
@@ -51,8 +55,8 @@ class List extends Component {
           transform: `translateX(${this.props.x}px)`,
           transition: "transform 0.5s ease",
         }}
+        onWheel={() => this.scrollList()}
       >
-    
         <div className="header-list">
           <p className="list-name">
             <span id={`${this.props.listName}_icon`}>
