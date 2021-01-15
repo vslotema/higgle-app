@@ -1,7 +1,9 @@
 export const showPriority = (listName, item) => {
   const priority = item.priority;
 
-  const itemContainer = document.getElementById(listName + "_" + item.item);
+  const itemContainer = document.getElementById(
+    listName + "_" + item.item + "_item-container"
+  );
   if (itemContainer) {
     switch (priority) {
       case "high":

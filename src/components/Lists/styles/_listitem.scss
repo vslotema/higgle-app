@@ -8,15 +8,7 @@
   @include flex(flex-start, center, row);
 }
 
-.item-icon {
-  svg {
-    position: absolute;
-    top: 25%;
-    left: -20%;
-    height: 1.5rem;
-    width: 1.5rem;
-  }
-}
+
 
 .checkbox {
   min-width: 3rem;
@@ -66,22 +58,7 @@
 
 .item-box:hover {
   word-break: break-all;
-  // overflow: visible;
 
-  /*  z-index: 5;
-  opacity: 1;
-  
-  padding: 0.5rem;
-  background: inherit;
-  float: left;
-  // max-width: 200rem;
-  height: 100%;*/
-  // max-width: 80rem;
-  //overflow: visible;
-  // @include flex(center, center, column);
-
-  //
-  //box-shadow: 1px 2px 3px rgba($color: #000000, $alpha: 0.2);
 }
 
 .buttons {
@@ -112,6 +89,15 @@
     background: $trash-btn-color;
   }
 
+  .item-icon {
+    svg {
+     position: absolute;
+    top: 25%;
+     // left: -20%;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
   #slide-left-btn {
     background: none;
     border: none;

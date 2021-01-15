@@ -8,6 +8,7 @@ import ListItem from "./ListItem";
 class List extends Component {
   state = {
     item: "",
+    y: 0,
   };
 
   componentDidMount() {
@@ -23,29 +24,25 @@ class List extends Component {
 
   showItems = (items, listName) => {
     return (
-      <div className="listitems-ul">
-        <ul className="ul-listitems">
-          {items.map((item) => {
-            return (
-              <ListItem
-                key={Math.floor(Math.random() * 1000000)}
-                onSendItem={item}
-                onSendListName={listName}
-                onSendPriority={this.props.onSendPriority}
-                onDeleteLi={this.props.onDeleteLi}
-                onScheduleLi={this.props.onScheduleLi}
-                onChecked={this.props.onChecked}
-              />
-            );
-          })}
-        </ul>
-      </div>
+     
+      <ul className="ul-listitems" id={"ul_" + listName}>
+        {items.map((item) => {
+          return (
+            <ListItem
+              key={Math.floor(Math.random() * 1000000)}
+              onSendItem={item}
+              onSendListName={listName}
+              onSendPriority={this.props.onSendPriority}
+              onDeleteLi={this.props.onDeleteLi}
+              onScheduleLi={this.props.onScheduleLi}
+              onChecked={this.props.onChecked}
+            />
+          );
+        })}
+      </ul>
     );
   };
 
-  scrollList = () => {
-    console.log("scroll");
-  };
   render() {
     return (
       <div
@@ -53,9 +50,8 @@ class List extends Component {
         id={this.props.listName}
         style={{
           transform: `translateX(${this.props.x}px)`,
-          transition: "transform 0.5s ease",
+          transition: "transform 0.4s ease",
         }}
-        onWheel={() => this.scrollList()}
       >
         <div className="header-list">
           <p className="list-name">

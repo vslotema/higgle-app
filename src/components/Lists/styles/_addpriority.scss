@@ -2,7 +2,7 @@
   z-index: 200;
   position: absolute;
   right: 10%;
-  bottom: -100%;
+  top: 0%;
   display: none;
   height: 13rem;
   width: 14rem;
@@ -44,20 +44,20 @@
   text-align: center;
 }
 
-#high {
+.high {
   .icon {
     color: $high;
     grid-column: 1/2;
   }
 }
 
-#medium {
+.medium {
   .icon {
     color: $medium;
   }
 }
 
-#low {
+.low {
   .icon {
     color: $low;
   }

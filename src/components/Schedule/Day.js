@@ -39,7 +39,7 @@ class Day extends Component {
 
   showItems = (items, id) => {
     return (
-      <ul>
+      <ul className="ul-listitems">
         {items.map((item) => {
           return (
             <ListItem

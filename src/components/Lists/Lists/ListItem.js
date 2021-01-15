@@ -16,10 +16,10 @@ const handleSlideInBtns = (e) => {
   const buttons = item;
 
   buttons.classList.toggle("slide");
-  buttons.children[1].children[0].classList.toggle("rotate");
+  buttons.children[0].children[0].classList.toggle("rotate");
+  buttons.children[1].classList.toggle("slide");
   buttons.children[2].classList.toggle("slide");
   buttons.children[3].classList.toggle("slide");
-  buttons.children[4].classList.toggle("slide");
 };
 
 const handleShowCalendar = (props) => {
@@ -29,19 +29,26 @@ const handleShowCalendar = (props) => {
   calendar.style.display = "block";
 };
 
-const handleHoverItem = (id) => {
+const handleHoverItem = (id, icon) => {
   console.log("hovering over item");
   document.getElementById(id + "_item-container").style.height = "10rem";
+  // document.getElementById(id + "_" + icon).style.transform =
+  //  "translate(56%,16%)";
+  //document.getElementById(id + "_" + icon).style.transform = "translateX(36%)";
 };
 
-const handleMouseLeaveItem = (id) => {
+const handleMouseLeaveItem = (id, icon) => {
   document.getElementById(id + "_item-container").style.height = "3rem";
 };
 const ListItem = (props) => {
   const id = props.onSendListName + "_" + props.onSendItem.item;
   return (
     <>
-      <li className="item-container" id={id + "_item-container"} onMouseLeave={() => handleMouseLeaveItem(id)}>
+      <li
+        className="item-container"
+        id={id + "_item-container"}
+        onMouseLeave={() => handleMouseLeaveItem(id, props.onSendItem.icon)}
+      >
         <div>
           <Calendar
             onSendListName={props.onSendListName}
@@ -69,20 +76,25 @@ const ListItem = (props) => {
 
         <div
           className="item-box"
-          onMouseOver={() => handleHoverItem(id)}
-          
+          onMouseOver={() => handleHoverItem(id, props.onSendItem.icon)}
         >
           {props.onSendItem.item}{" "}
         </div>
 
         <div className="buttons" id="buttons-container">
-          <span className="item-icon">{icons[props.onSendItem.icon]}</span>
+         
           <button
             id="slide-left-btn"
             type="button"
             onClick={(e) => handleSlideInBtns(e)}
           >
-            <AiOutlineLeft />
+            {props.onSendItem.icon ? (
+              // <span className="item-icon" id={id + "_" + props.onSendItem.icon}>
+              icons[props.onSendItem.icon]
+            ) : (
+              //   </span>
+              <AiOutlineLeft />
+            )}
           </button>
 
           <button

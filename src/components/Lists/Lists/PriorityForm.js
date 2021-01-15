@@ -2,32 +2,23 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 
 export function handleOpenPriorityForm(e, id) {
-  /*let item = e.target;
 
-  while (item.classList[0] !== "item-container") {
-    item = item.parentElement;
-  }
+  console.log("e ", e.clientY);
 
-  const form = item.children[3];
-
-  form.style.display = "flex";*/
-  document.getElementById(id + "_priority-form").style.display = "flex";
+  const form = document.getElementById(id + "_priority-form");
+  form.style.display = "flex";
+  if (e.clientY <= 362) form.style.transform = "translateY(14px)";
+  if (e.clientY >= 684) form.style.transform = "translateY(-98px)";
 }
 
 const handleClosePriorityForm = (e, id) => {
-  /* let item = e.target;
 
-  while (item.classList[0] !== "item-container") {
-    item = item.parentElement;
-  }
-  const form = item.children[3];
-  form.style.display = "none";*/
   document.getElementById(id + "_priority-form").style.display = "none";
 };
 
-const selectPriority = (e, props) => {
+const selectPriority = (e, props, priority) => {
   const item = e.target;
-  const priority = getPriorityId(item);
+
   const itembox = getListItem(item);
   removeOtherPriority(itembox);
 
@@ -53,14 +44,15 @@ const selectPriority = (e, props) => {
       );
       break;
   }
-  handleClosePriorityForm(e);
+  handleClosePriorityForm(e, props.onSendListName + props.onSendItem.item);
 };
 
+/*
 const getPriorityId = (item) => {
   if (item.classList[0] === "icon" || item.classList[0] === "priority")
     item = item.parentElement;
   return item.id;
-};
+};*/
 
 const getListItem = (item) => {
   while (item.classList[0] !== "item-container") {
@@ -89,19 +81,34 @@ const PriorityForm = (props) => {
         </IconContext.Provider>
       </button>
 
-      <p id="high" onClick={(e) => selectPriority(e, props)}>
+      <p
+        id={id + "high"}
+        className="high"
+        onClick={(e) => selectPriority(e, props, "high")}
+      >
         <span className="priority">High Priority</span>
         <span className="icon">!!!</span>
       </p>
-      <p id="medium" onClick={(e) => selectPriority(e, props)}>
+      <p
+        id={id + "medium"}
+        className="medium"
+        onClick={(e) => selectPriority(e, props, "medium")}
+      >
         <span className="priority">Medium Priority</span>
         <span className="icon">!!</span>
       </p>
-      <p id="low" onClick={(e) => selectPriority(e, props)}>
+      <p
+        id={id + "low"}
+        className="low"
+        onClick={(e) => selectPriority(e, props, "low")}
+      >
         <span className="priority">Low Priority</span>
         <span className="icon">!</span>
       </p>
-      <p id="neutral" onClick={(e) => selectPriority(e, props)}>
+      <p
+        id={id + "neutral"}
+        onClick={(e) => selectPriority(e, props, "neutral")}
+      >
         <span className="priority">Neutral</span>
       </p>
     </div>
