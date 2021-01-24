@@ -50,7 +50,9 @@
     height: 2.5rem;
     display: none;
   }
+}
 
+/*
   @media screen and (max-width: 568px) {
     ul {
       display: none;
@@ -92,8 +94,9 @@
     display: none;
   }
 }
+*/
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 587px) {
   .header {
     display: none;
   }

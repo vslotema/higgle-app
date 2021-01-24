@@ -2,9 +2,6 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 
 export function handleOpenPriorityForm(e, id) {
-
-  console.log("e ", e.clientY);
-
   const form = document.getElementById(id + "_priority-form");
   form.style.display = "flex";
   if (e.clientY <= 362) form.style.transform = "translateY(14px)";
@@ -12,15 +9,15 @@ export function handleOpenPriorityForm(e, id) {
 }
 
 const handleClosePriorityForm = (e, id) => {
-
   document.getElementById(id + "_priority-form").style.display = "none";
 };
 
 const selectPriority = (e, props, priority) => {
-  const item = e.target;
+  const item = document.getElementById(
+    props.onSendListName + "_" + props.onSendItem.item + "_item-container"
+  );
 
-  const itembox = getListItem(item);
-  removeOtherPriority(itembox);
+  removeOtherPriority(item);
 
   switch (priority) {
     case "high":
@@ -63,6 +60,7 @@ const getListItem = (item) => {
 
 const removeOtherPriority = (item) => {
   const classes = item.classList;
+
   for (var i = 0; i < classes.length; i++)
     if (classes[i] !== "item-container") item.classList.remove(classes[i]);
 };
@@ -76,9 +74,7 @@ const PriorityForm = (props) => {
         type="button"
         onClick={(e) => handleClosePriorityForm(e, id)}
       >
-        <IconContext.Provider value={{ className: "close-btn-icon" }}>
-          <AiFillCloseCircle />
-        </IconContext.Provider>
+        <AiFillCloseCircle className="close-btn-icon" />
       </button>
 
       <p

@@ -4,6 +4,7 @@ import { useState } from "react";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import "./calendar.scss";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 export function getWeek(date) {
   //define a date object variable that will take the current system date
@@ -30,7 +31,7 @@ export function getWeekDates(addWeek) {
   var today = new Date();
   var week = ["", "", "", "", "", "", ""];
 
-  const weekday = today.getDay() - 1;
+  const weekday = today.getDay() === 0 ? 6 : today.getDay() - 1;
   const add = addWeek * 7;
   for (let i = 0; i < week.length; i++) {
     const days = i + add - weekday;
@@ -40,7 +41,10 @@ export function getWeekDates(addWeek) {
   }
   return week;
 }
-
+const closeCalendar = (id) => {
+  const calendar = document.getElementById(id);
+  calendar.style.display = "none";
+};
 const Calendar = (props) => {
   const [selectedDay, setSelectedDay] = useState(null);
   useEffect(() => {
@@ -61,6 +65,14 @@ const Calendar = (props) => {
         id={"calendar_" + props.onSendListName + "_" + props.onSendItem.item}
         className="calendar-container"
       >
+        <AiFillCloseCircle
+          className="close-btn-icon"
+          onClick={() =>
+            closeCalendar(
+              "calendar_" + props.onSendListName + "_" + props.onSendItem.item
+            )
+          }
+        />
         <DayPicker onDayClick={setSelectedDay} selectedDays={selectedDay} />
       </div>
     </>

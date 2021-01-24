@@ -3,10 +3,6 @@ import { getToday, getWeek } from "../Calendar/Calendar";
 import { FaPlus } from "react-icons/fa";
 import Week from "./Week";
 import "./styles/schedule.scss";
-import {
-  showPriority,
-  showChecked,
-} from "../Lists/Lists/showPriorityandChecked";
 import ListsPage from "../Lists/ListsPage";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -20,13 +16,14 @@ class Schedule extends Component {
   };
 
   componentDidMount() {
+    console.log("mounted schedule");
     const today = getToday();
     this.setState({ today });
     const agenda = JSON.parse(localStorage.getItem("agenda"));
     if (agenda) this.setState({ agenda });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     const input = document.getElementById("input_" + this.state.focus);
 
     if (input) {
@@ -35,10 +32,9 @@ class Schedule extends Component {
     }
 
     localStorage.setItem("agenda", JSON.stringify(this.state.agenda));
+
     this.state.agenda.map((date) => {
       date.items.map((item) => {
-        showPriority(new Date(date.date).toLocaleDateString("en-GB"), item);
-        showChecked(new Date(date.date).toLocaleDateString("en-GB"), item);
         return item;
       });
       return date;
@@ -60,7 +56,7 @@ class Schedule extends Component {
   };
 
   handleDeleteLi = (date, nameItem) => {
-    const agenda = this.state.agenda;
+    var agenda = this.state.agenda;
     agenda.map((item) => {
       if (new Date(item.date).toLocaleDateString("en-GB") === date) {
         const itemsList = item.items.filter((i) => i.item !== nameItem);
@@ -69,10 +65,17 @@ class Schedule extends Component {
       return item;
     });
 
+    var agenda = this.removeEmptyDateListFromLocalStorage();
+    console.log("AGENDA ", agenda);
     this.setState({ agenda });
   };
 
+  removeEmptyDateListFromLocalStorage = () => {
+    return this.state.agenda.filter((item) => item.items.length !== 0);
+  };
+
   handleChecked = (date, nameItem) => {
+    console.log("check ", date);
     const agenda = this.state.agenda;
     agenda.map((item) => {
       if (new Date(item.date).toLocaleDateString("en-GB") === date) {
@@ -172,6 +175,8 @@ class Schedule extends Component {
       if (addToDateList.items.every((item) => item.item !== newItem.item))
         addToDateList.items.push(newItem);
     } else {
+      //If date list has not been stored yet in the localStorage create new date item and
+      //add to Agenda.
       let [day, month, year] = date.split("/");
       var d1 = new Date();
       d1.setFullYear(parseInt(year), parseInt(month) - 1, parseInt(day));
@@ -227,12 +232,17 @@ class Schedule extends Component {
   };
 
   showMonthly = () => {
-    return <h3 className="view">January</h3>;
+    return (
+      <>
+        {" "}
+        <h3 className="view">January</h3>{" "}
+      </>
+    );
   };
 
   render() {
     return (
-      <>
+      <div>
         <section id="schedule-s" className="schedule-section">
           <form className="select-view-form">
             <select
@@ -263,7 +273,7 @@ class Schedule extends Component {
             </button>
           </div>
         </section>
-      </>
+      </div>
     );
   }
 }

@@ -3,7 +3,7 @@
   height: 80%;
   position: absolute;
   top: 13%;
-  overflow: hidden;
+  //overflow: hidden;
 
   @include flex(space-between, center, row);
 }
@@ -15,26 +15,34 @@
   background: $background-color;
   border-radius: 0.7rem;
   box-shadow: 1px 2px 4px rgba(black, 0.2);
+
+  .buttons {
+    display: none;
+  }
 }
 
 .selected {
   height: 100%;
-  width: 19%;
+  width: 25rem;
+
+  .buttons {
+    display: flex;
+  }
 
   .day-header {
     min-height: 7rem;
     background: #ffddd2;
-    :nth-child(1) {
+    .day-week {
       font-size: 2rem;
     }
-    :nth-child(2) {
+    .day-date {
       font-size: 1.3rem;
     }
   }
 
   .list-items {
     top: 13%;
-    height: 77%;
+    height: 97%;
   }
 
   .day-footer {
@@ -90,4 +98,234 @@
 
 #left-btn {
   transform: rotateZ(-180deg);
+}
+
+.day-header-days {
+  @include flex(space-evenly, center, row);
+  width: 100%;
+
+  list-style: none;
+  padding: 1rem 0rem;
+  display: none;
+  position: absolute;
+  top: -10%;
+  color: $gray-text;
+  font-weight: 600;
+
+  li {
+    text-decoration: none;
+    font-size: 1rem;
+
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 3rem;
+    @include flex(center, center, row);
+  }
+
+  li:hover,
+  .select-day {
+    background: $schedule-btn-color;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 1213px) {
+  .day {
+    width: 12.5%;
+  }
+  .selected {
+    // height: 100%;
+    width: 25rem;
+  }
+}
+
+@media screen and (max-width: 1078px) {
+  .day {
+    width: 12%;
+  }
+  .selected {
+    // height: 100%;
+    width: 25rem;
+  }
+}
+
+@media screen and (max-width: 969px) {
+  .day {
+    width: 11.8%;
+  }
+  .selected {
+    // height: 100%;
+    width: 25rem;
+  }
+}
+
+@media screen and (max-width: 908px) {
+  .day {
+    width: 11.5%;
+  }
+
+  .day-week {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    text-align: center;
+  }
+  .mon {
+    .day-week {
+      width: 29px;
+    }
+  }
+
+  .tue {
+    .day-week {
+      width: 24px;
+    }
+  }
+
+  .wed {
+    .day-week {
+      width: 30px;
+    }
+  }
+
+  .thu {
+    .day-week {
+      width: 26px;
+    }
+  }
+
+  .fri {
+    .day-week {
+      width: 17px;
+    }
+  }
+
+  .sat {
+    .day-week {
+      width: 21px;
+    }
+  }
+
+  .sun {
+    .day-week {
+      width: 25px;
+    }
+  }
+  .selected {
+    // height: 100%;
+    width: 25rem;
+    .day-week {
+      width: 10rem;
+    }
+  }
+}
+
+@media screen and (max-width: 864px) {
+  .day {
+    width: 10.8%;
+  }
+
+  .selected {
+    // height: 100%;
+    width: 25rem;
+    .day-week {
+      width: 10rem;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .day {
+    width: 10.5%;
+  }
+
+  .selected {
+    // height: 100%;
+    z-index: 2;
+    width: 25rem;
+    .day-week {
+      width: 10rem;
+    }
+  }
+}
+
+@media screen and (max-width: 587px) {
+  .week-container {
+    height: 79.8vh;
+    // position: relative;
+  }
+
+  .ul-listitems {
+    height: 82%;
+  }
+
+  .day-header-days {
+    display: flex;
+  }
+
+  .day {
+    display: none;
+    //  position: absolute;
+    right: 0%;
+    height: 0%;
+    box-shadow: 0px 0px 0px rgba($color: #000000, $alpha: 0);
+    .list-items {
+      display: none;
+    }
+    .day-footer {
+      display: none;
+    }
+
+    .day-date {
+      display: none;
+    }
+  }
+
+  .selected {
+    top: 0%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    .list-items {
+      display: flex;
+      top: 7rem;
+      height: 95%;
+    }
+    .item-container {
+      min-width: 98vw;
+      height: 4.5rem;
+    }
+    .day-footer {
+      display: flex;
+    }
+    .day-week {
+      width: 100%;
+    }
+    .day-date {
+      display: flex;
+    }
+
+    .day-footer {
+      height: 7rem;
+
+      form input {
+        padding: 1rem 3rem 1rem 2rem;
+      }
+    }
+
+    .day-footer form .add-i-btn {
+      .add-item-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .week-container {
+    height: 79.7vh;
+    // position: relative;
+  }
 }

@@ -65,12 +65,12 @@ class Header extends Component {
               </NavLink>
             </li>
           </ul>
-          <GiHamburgerMenu className="burger" onClick={() => this.openMenu()} />
+      {/*    <GiHamburgerMenu className="burger" onClick={() => this.openMenu()} />
           <AiOutlineClose
             id="burger-menu"
             className="close-menu-btn"
             onClick={() => this.closeMenu()}
-          />
+    />*/}
         </nav>
       </section>
     );

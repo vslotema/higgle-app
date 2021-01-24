@@ -4,7 +4,6 @@ import SearchBar from "./Lists/SearchBar";
 import List from "./Lists/List";
 import NewListForm from "./Lists/NewListForm";
 import { handleCloseForm } from "./Lists/NewListForm";
-import { showPriority, showChecked } from "./Lists/showPriorityandChecked";
 import { IoIosArrowForward } from "react-icons/io";
 import { IconContext } from "react-icons";
 import DonutPieChart from "../PieChart/DonutPieChart";
@@ -49,8 +48,6 @@ class ListsPage extends Component {
     localStorage.setItem("lists", JSON.stringify(this.state.lists));
     this.state.lists.map((list) => {
       list.items.map((item) => {
-        showPriority(list.name, item);
-        showChecked(list.name, item);
         return item;
       });
       return list;
@@ -82,7 +79,6 @@ class ListsPage extends Component {
 
   handleDeleteList = (e, nameList) => {
     const lists = this.state.lists.filter((l) => l.name !== nameList);
-
     this.setState({ lists });
   };
 
@@ -142,7 +138,10 @@ class ListsPage extends Component {
 
       if (agenda) {
         agenda = agenda.map((list) => {
-          if (new Date(list.date).toLocaleDateString("en-GB") === new Date(date).toLocaleDateString("en-GB")) {
+          if (
+            new Date(list.date).toLocaleDateString("en-GB") ===
+            new Date(date).toLocaleDateString("en-GB")
+          ) {
             found = true;
             list.items.push(transferItem);
           }

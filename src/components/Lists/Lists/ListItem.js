@@ -5,6 +5,8 @@ import PriorityForm from "./PriorityForm";
 import { handleOpenPriorityForm } from "./PriorityForm";
 import Calendar from "../../Calendar/Calendar";
 import { icons } from "./Icons";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const handleSlideInBtns = (e) => {
   let item = e.target;
@@ -29,25 +31,51 @@ const handleShowCalendar = (props) => {
   calendar.style.display = "block";
 };
 
-const handleHoverItem = (id, icon) => {
-  console.log("hovering over item");
-  document.getElementById(id + "_item-container").style.height = "10rem";
-  // document.getElementById(id + "_" + icon).style.transform =
-  //  "translate(56%,16%)";
-  //document.getElementById(id + "_" + icon).style.transform = "translateX(36%)";
+const handleHoverItem = (id, item) => {
+  var ctx = document.createElement("canvas").getContext("2d");
+  ctx.font = "1.5rem Montserrat";
+  const width = ctx.measureText(item).width;
+  const size = Math.ceil(width / 190) * 3;
+  document.getElementById(id + "_item-container").style.height = `${size}rem`;
 };
 
-const handleMouseLeaveItem = (id, icon) => {
-  document.getElementById(id + "_item-container").style.height = "3rem";
+const handleMouseLeaveItem = (id) => {
+  document.getElementById(id + "_item-container").style.height = "3.5rem";
 };
+
 const ListItem = (props) => {
   const id = props.onSendListName + "_" + props.onSendItem.item;
+  const [priority, setPriority] = useState([]);
+  const [checked, setChecked] = useState([]);
+  const [opacity, setOpacity] = useState([]);
+
+  useEffect(() => {
+    switch (props.onSendItem.priority) {
+      case "high":
+        setPriority("high-p");
+        break;
+      case "medium":
+        setPriority("medium-p");
+        break;
+      case "low":
+        setPriority("low-p");
+        break;
+      default:
+        break;
+    }
+
+    if (props.onSendItem.checked) {
+      setChecked("checked");
+      setOpacity("0.35");
+    }
+  });
+
   return (
     <>
       <li
-        className="item-container"
+        className={"item-container" + " " + priority}
         id={id + "_item-container"}
-        onMouseLeave={() => handleMouseLeaveItem(id, props.onSendItem.icon)}
+        onMouseLeave={() => handleMouseLeaveItem(id)}
       >
         <div>
           <Calendar
@@ -71,28 +99,28 @@ const ListItem = (props) => {
         >
           <RiCheckboxBlankLine className="box" />
 
-          <RiCheckLine className="check" />
+          <RiCheckLine className={"check" + " " + checked} />
         </div>
 
         <div
           className="item-box"
-          onMouseOver={() => handleHoverItem(id, props.onSendItem.icon)}
+          id={id + "_item-box"}
+          style={{ opacity: opacity }}
+          onMouseOver={() => handleHoverItem(id, props.onSendItem.item)}
         >
-          {props.onSendItem.item}{" "}
+          {props.onSendItem.item}
         </div>
 
         <div className="buttons" id="buttons-container">
-         
           <button
             id="slide-left-btn"
             type="button"
             onClick={(e) => handleSlideInBtns(e)}
           >
             {props.onSendItem.icon ? (
-              // <span className="item-icon" id={id + "_" + props.onSendItem.icon}>
               icons[props.onSendItem.icon]
             ) : (
-              //   </span>
+          
               <AiOutlineLeft />
             )}
           </button>

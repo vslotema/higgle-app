@@ -62,7 +62,8 @@ class Day extends Component {
       <>
         <div className="day-header" id={"header_" + this.props.date}>
           <p className="day-week">{this.props.day}</p>
-          <p>{this.props.date}</p>
+          <p className="day-date">{this.props.date}</p>
+          
         </div>
         <div className="list-items">
           {this.showItems(this.props.items, this.props.date)}

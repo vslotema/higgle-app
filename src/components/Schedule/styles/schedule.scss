@@ -6,12 +6,7 @@
   height: 90vh;
   width: 94%;
   margin: auto;
-
-  //overflow-y: hidden;
-  //  overflow-x:visible;
-  //margin: 0rem 4rem;
   position: relative;
-  //border: 1px solid black;
 }
 
 .view {
@@ -164,5 +159,56 @@
   }
   .piechart-container {
     display: none;
+  }
+}
+
+@media screen and (max-width: 815px) {
+  .add-from-list-btn {
+    display: none;
+  }
+
+  .sideLists {
+    .lists-container {
+      display: none;
+    }
+  }
+
+  .day-header {
+  }
+}
+
+@media screen and (max-width: 587px) {
+  .view {
+    right: 50%;
+    transform: translateX(50%);
+    top: 1.4rem;
+    font-size: 1.5rem;
+  }
+  .select-view-form,
+  .forward-btn {
+    top: 0rem;
+  }
+
+  .forward-btn {
+   
+   
+  }
+
+  .select-view-form {
+    right: 70%;
+    display: none;
+  }
+
+
+  .right {
+    right: 0rem;
+  }
+
+  .left {
+    left: 0rem;
+  }
+  .schedule-section {
+    height: 92vh;
+    width: 100vw;
   }
 }

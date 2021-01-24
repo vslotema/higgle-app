@@ -4,14 +4,15 @@
   min-height: 5rem;
   width: 100%;
   color: $gray-text;
+  border-radius: 0.7rem 0.7rem 0rem 0rem;
   //border: 1px solid gold;
   @include flex(center, center, column);
 
-  :nth-child(1) {
+  .day-week {
     font-size: 1.3rem;
   }
 
-  :nth-child(2) {
+  .day-date {
     font-size: 1rem;
     padding-top: 0.5rem;
   }
@@ -20,6 +21,7 @@
 .day-footer {
   position: absolute;
   bottom: 0%;
+  border-radius: 0rem 0rem 0.7rem 0.7rem;
 }
 
 .mon {
@@ -99,11 +101,9 @@
   }
 
   .buttons {
-    right: -6.8rem;
-    position: absolute;
-
     button {
       border: none;
     }
   }
 }
+

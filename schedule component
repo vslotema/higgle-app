@@ -1,0 +1,65 @@
+[33mcommit 9e12f5d6d94460695b3c500343c0c490dd0864ae[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: vslotema <rovs@itu.dk>
+Date:   Fri Jan 15 09:25:11 2021 +0100
+
+    priority form fixed
+
+[33mcommit 85c2d8b78cdb45f28f2a8ed5f2407be1c5be990b[m
+Author: vslotema <rovs@itu.dk>
+Date:   Thu Jan 14 18:25:47 2021 +0100
+
+    some refacotring
+
+[33mcommit 0b69e075f273d24334be9ec1575d0f9b632c273c[m
+Author: vslotema <rovs@itu.dk>
+Date:   Wed Jan 13 20:45:39 2021 +0100
+
+    schedule function
+
+[33mcommit bb36c5a51d79f9e45b72e85e828caafe02e032ce[m
+Author: vslotema <rovs@itu.dk>
+Date:   Wed Jan 6 21:59:37 2021 +0100
+
+    schedule component
+
+[33mcommit 407423287638ac5e286f8a42a9542f24e40b4301[m
+Author: vslotema <rovs@itu.dk>
+Date:   Mon Dec 28 15:26:54 2020 +0100
+
+    started on schedule component
+
+[33mcommit f38e82fd35053bd5f221421e15eb70c248c8bc5c[m
+Author: vslotema <rovs@itu.dk>
+Date:   Sun Dec 27 21:41:29 2020 +0100
+
+    responsive and swipe
+
+[33mcommit 046826b3956294a54a035c6ba9f0486839aa2bad[m
+Author: vslotema <rovs@itu.dk>
+Date:   Wed Dec 23 23:02:20 2020 +0100
+
+    piechart and responsive part1
+
+[33mcommit 279862e5edd1e14bd968ce2a7d5ba662f4ce5d06[m
+Author: vslotema <rovs@itu.dk>
+Date:   Tue Dec 22 18:48:38 2020 +0100
+
+    searchbar function and scroll
+
+[33mcommit 4bbc0b86c67edd14ef92bccb3818ce03ad1f8ea0[m
+Author: vslotema <rovs@itu.dk>
+Date:   Fri Dec 18 18:42:20 2020 +0100
+
+    added icons
+
+[33mcommit 7642f7fc80346a339833d132b31d96ae648b5ccf[m
+Author: vslotema <rovs@itu.dk>
+Date:   Thu Dec 17 22:11:49 2020 +0100
+
+    add to localstorage
+
+[33mcommit 7addf843cba2177625a5014a47630481e23a7231[m
+Author: vslotema <rovs@itu.dk>
+Date:   Wed Dec 16 17:06:52 2020 +0100
+
+    list components
