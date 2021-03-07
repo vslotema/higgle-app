@@ -107,18 +107,19 @@
   }
 
   .search-form {
+    width:22rem; 
     position: absolute;
     z-index: 1;
     bottom: 15px;
     left: 23%;
   }
   .searchbar {
-    width: 26rem;
+    width: 100%;
     padding: 0.75rem 2rem;
   }
   .search-btn {
-    right: -62.5%;
-    transform: translateY(7%);
+    right: 0.5%;
+    transform: translateY(5%);
   }
 
   .search-btn-svg {
